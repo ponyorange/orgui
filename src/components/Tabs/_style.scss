@@ -1,0 +1,43 @@
+.tabs{
+
+  .tabs-sele{
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-bottom: 1px solid $gray-400;
+    flex-wrap: wrap;
+    .item{
+      padding: 8px 15px;
+      cursor: pointer;
+      border: 1px solid rgba(0,0,0,0);
+      margin-bottom: -1px;
+      font-size: $font-size-base;
+      color: $gray-900;
+      &:hover{
+        color: $primary;
+      }
+    }
+  }
+  .tabs-sele-card{
+    .item-actice{
+      color: $primary;
+      background-color: white;
+      border-top-right-radius: $border-radius-lg;
+      border-top-left-radius: $border-radius-lg;
+      border-color: $gray-400 $gray-300 rgba(0,0,0,0);
+    }
+  }
+  .tabs-sele-line{
+    .item-actice{
+      color: $primary;
+      background-color: white;
+      border-bottom: 2px solid $primary;
+    }
+  }
+
+  .tabs-show{
+
+  }
+}

@@ -1,0 +1,16 @@
+@include zoom-animation('top', scaleY(0), scaleY(1), center top);
+@include zoom-animation('left', scale(.45, .45), scale(1, 1), top left);
+@include zoom-animation('right', scale(.45, .45), scale(1, 1), top right);
+@include zoom-animation('bottom', scaleY(0), scaleY(1),  center bottom);
+
+@keyframes btnClick {
+  0%{
+    box-shadow: 0 0 0 $primary;
+  }
+  50%{
+    box-shadow: 0 0 7px $primary;
+  }
+  100%{
+    box-shadow: 0 0 0 $primary;
+  }
+}

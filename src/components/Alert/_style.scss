@@ -1,0 +1,50 @@
+.alert{
+  cursor: default;
+  width: 96%;
+  margin: 10px auto;
+  color: white;
+  padding: 10px 20px;
+  border-radius: $border-radius;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  .title{
+    font-size: $font-size-base;
+    font-weight: $font-weight-bolder;
+  }
+  .description{
+    font-size: $font-size-xs;
+    font-weight: $font-weight-bold;
+    margin-top: 4px;
+  }
+  transition: all .1s;
+  transform: scale(0);
+}
+
+.alert-default{
+  background-color: $primary;
+}
+.alert-success{
+  background-color: $success;
+}
+.alert-warning{
+  background-color: $warning;
+}
+.alert-danger{
+  background-color: $danger;
+}
+
+.alert-closeIcon{
+  cursor: pointer;
+    .icon{
+      transition: all .15s;
+      &:hover {
+        transform: rotate(90deg);
+        transform-origin: 50% 50%;
+      }
+  }
+}
+
+.alert-Show{
+  transform: scale(1);
+}

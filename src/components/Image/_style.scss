@@ -1,0 +1,57 @@
+.img-container{
+  width: 200px;
+  height: 200px;
+  display: inline-block;
+}
+
+.img{
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+  transform: scale(0);
+  transition: all 0.1s;
+}
+.img-sus{
+  transform: scale(1);
+}
+
+.img-fit{
+  object-fit: contain;
+}
+.img-fill{
+  object-fit: fill;
+}
+.img-cover{
+  object-fit: cover;
+}
+
+.img-normal{
+  width: 200px;
+  height: 200px;
+}
+.img-small{
+  width: 100px;
+  height: 100px;
+}
+.img-large{
+  width: 300px;
+  height: 300px;
+}
+
+.img-loading{
+  width: 100%;
+  height: 100%;
+  background-color: $gray-200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.img-loaderr{
+  width: 100%;
+  height: 100%;
+  background-color: $gray-200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: $font-size-xs;
+}
