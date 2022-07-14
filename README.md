@@ -4,10 +4,10 @@
 如果你也喜欢自己动手实现自己的组件库，欢迎与我交流👏
 
 ## 如果你想体验一下👇👇👇
-### `npm install orangeui --save`
+### `npm install orgui --save`
 
 ## 文档：
-### https://www.baidu.com
+### https://orange.seeyouweb.com/orgui
 
 ## 目前实现的组件
 * Alert

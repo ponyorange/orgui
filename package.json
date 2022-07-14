@@ -1,5 +1,5 @@
 {
-  "name": "orangeui",
+  "name": "orgui",
   "version": "0.1.0",
   "private": false,
   "description": "React components library",
@@ -16,7 +16,7 @@
   "homepage": "https://orange.seeyouweb.com/orgui",
   "repository": {
     "type": "git",
-    "url": "https://github.com/vikingmute/vikingship"
+    "url": "https://github.com/ponyorange/orgui"
   },
   "files": [
     "dist"
