@@ -1,5 +1,6 @@
 import React from "react";
 import { CSSTransition } from "react-transition-group";
+import { ExitHandler } from "react-transition-group/Transition";
 
 type AnimationName =
   | "zoom-in-top"
@@ -16,6 +17,7 @@ interface TransitionProps {
   appear?: boolean;
   in: boolean;
   timeout: number;
+  onExited?: ExitHandler<HTMLElement> | undefined;
 }
 
 const Transition: React.FC<TransitionProps> = (props) => {

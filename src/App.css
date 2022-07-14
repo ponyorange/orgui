@@ -49,3 +49,17 @@
 .minput{
   width: 200px;
 }
+.mySelect{
+  width: 20rem;
+}
+
+.login{
+  margin-top: 40px;
+  width: 60%;
+
+}
+.orange-form-submit-area{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

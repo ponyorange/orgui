@@ -12,7 +12,7 @@ export default {
 const IntroTemplate: ComponentStory<typeof Button> = () => (
   <div>
     <Button>默认的</Button>
-    <Button btnType="primary">主要的</Button>
+    <Button btnType="primary">重要的</Button>
     <Button btnType="danger">危险的</Button>
     <Button size="large">大的</Button>
     <Button size="small">小的</Button>

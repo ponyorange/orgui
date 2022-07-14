@@ -12,17 +12,20 @@ export default {
 } as ComponentMeta<typeof Tabs>;
 
 const IntroTemplate: ComponentStory<typeof Tabs> = () => (
-  <>
-    <Tabs onSelect={function noRefCheck() {}} defaultIndex={1}>
+  <div style={{ height: "100px" }}>
+    <Tabs onSelect={function noRefCheck() {}} defaultIndex={0}>
       <TabItem label="选项卡一">
         <div>
-          <h1>我是一个标题</h1>this is content one
+          <div>
+            <h1>我是一个标题</h1>
+          </div>
+          this is content one
         </div>
       </TabItem>
       <TabItem label="选项卡二">this is content two</TabItem>
       <TabItem label="选项卡三">this is content three</TabItem>
     </Tabs>
-  </>
+  </div>
 );
 
 export const Introduction = IntroTemplate.bind({});

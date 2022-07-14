@@ -10,8 +10,12 @@ export default {
 } as ComponentMeta<typeof Image>;
 
 const IntroTemplate: ComponentStory<typeof Image> = (args) => {
+  const imgContainerStyle = {
+    width: "300px",
+    height: "300px",
+  };
   return (
-    <div>
+    <div style={imgContainerStyle}>
       <Image {...args} />
     </div>
   );

@@ -10,6 +10,7 @@ export default {
 
 const defaultStyle = {
   margin: "10px 30px",
+  width: "80%",
 };
 const IntroTemplate: ComponentStory<typeof Input> = () => (
   <Input style={defaultStyle} placeholder="默认的Input" />

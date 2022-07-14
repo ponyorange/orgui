@@ -1,0 +1,117 @@
+.orange-select{
+  position: relative;
+  &:hover{
+    input[readonly] {
+      border-color: $primary;
+    }
+  }
+  .orange-icon{
+    transition: all .2s;
+  }
+  input[readonly] {
+    background-color: #fff;
+    border-color: #ced4da;
+    cursor: pointer;
+    opacity: 1;
+  }
+  .orange-select-input{
+    cursor: pointer;
+    .input{
+      width: 100%;
+    }
+  }
+  .orange-select-dropdown{
+    list-style: none;
+    padding-left: 0;
+    white-space: nowrap;
+    position: absolute;
+    background: #fff;
+    z-index: 100;
+    top: calc(100% + 3px);
+    left: 0;
+    border: 1px solid #dee2e6;
+    box-shadow: $box-shadow;
+    width: 100%;
+    .orange-select-item{
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      transition: $select-item-transition;
+      color: #212529;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      &:hover{
+        background-color: $primary-opacity01;
+      }
+      .orange-icon{
+        width: 0;
+        height: 0;
+        opacity: 0;
+      }
+    }
+    .is-disabled{
+      color: $disabled-color;
+      pointer-events: none;
+      cursor: not-allowed;
+    }
+    .is-selected{
+      color: $primary;
+      background-color: $primary-opacity01;
+      font-weight: $font-weight-normal;
+      .orange-icon{
+        width: 18px;
+        height: 18px;
+        opacity: 1;
+      }
+    }
+  }
+
+  .orange-selected-tags{
+    position: absolute;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    min-height: 100%;
+    max-height: 150%;
+    max-width: calc(100% - 35px);
+    overflow: auto;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    .orange-tag{
+      flex: 0 0 auto;
+      height: 80%;
+      padding: 2px 5px;
+      box-sizing: border-box;
+      border: 1px solid $primary-opacity03;
+      margin-left: 6px;
+      border-radius: 3px;
+      color: $primary;
+      background-color:$primary-opacity01;
+    }
+  }
+}
+
+.menu-is-open{
+  .icon-wrapper{
+    .orange-icon{
+      transform: rotate(180deg);
+    }
+  }
+}
+
+.is-disabled{
+  .orange-select-input{
+    pointer-events: none;
+    cursor: not-allowed;
+    .input{
+      width: 100%;
+      .orange-input-inner{
+        color: $disabled-color;
+        pointer-events: none;
+        cursor: not-allowed;
+        background-color: $disabled-backgroundColor;
+      }
+    }
+  }
+}

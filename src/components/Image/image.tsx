@@ -124,12 +124,16 @@ Image.defaultProps = {
 
 /**
  * 图片的最大痛点就是图片加载失败或者加载中时的显示缺陷，这个组件就是为了解决这个问题
+ *
  * ### 使用：
  *
  * ~~~js
  * import { Image } from 'orangui'
  * ~~~
- * ### 示例：
+ * ### 示例
+ *
+ * 尝试修改src属性体验
+ * ：
  */
 
 export const MemoImage = memo(Image);

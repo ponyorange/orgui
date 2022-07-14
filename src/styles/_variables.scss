@@ -17,7 +17,7 @@ $indigo:  #6610f2 !default;
 $purple:  #6f42c1 !default;
 $pink:    #d63384 !default;
 $red:     #d9534f !default;
-$orange:  #f0ad4e !default;
+$orange:  rgb(240, 173, 78) !default;
 $yellow:  #fadb14 !default;
 $green:   #5cb85c !default;
 $teal:    #20c997 !default;
@@ -45,6 +45,13 @@ $theme-colors:
                 "light":      $light,
                 "dark":       $dark
         );
+/** 主题颜色透明度 **/
+$primary-opacity01:           rgba(240, 173, 78,.1) !default;
+$primary-opacity02:           rgba(240, 173, 78,.2) !default;
+$primary-opacity03:           rgba(240, 173, 78,.3) !default;
+$primary-opacity04:           rgba(240, 173, 78,.4) !default;
+$primary-opacity05:           rgba(240, 173, 78,.5) !default;
+
 /** 字体家族 **/
 $font-family-sans-serif:      -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
 $font-family-monospace:       SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
@@ -181,6 +188,10 @@ $box-shadow:                  0 .5rem 1rem rgba($black, .15) !default;
 $box-shadow-lg:               0 1rem 3rem rgba($black, .175) !default;
 $box-shadow-inset:            inset 0 1px 2px rgba($black, .075) !default;
 
+//禁用
+$disabled-color:              $gray-600 !default;
+$disabled-backgroundColor:    $gray-100 !default;
+
 // 按钮
 // 按钮基本属性
 $btn-font-weight:             400;
@@ -242,7 +253,7 @@ $tag-padding-x:                       $btn-padding-x !default;
 $tag-border-radius:                   $btn-border-radius !default;
 
 //input
-$input-default-width:                   20rem !default;
+$input-default-width:                   100% !default;
 $input-padding-y:                       $btn-padding-y !default;
 $input-padding-x:                       $btn-padding-x !default;
 $input-font-family:                     $btn-font-family !default;
@@ -297,3 +308,6 @@ $progress-bg:                       $gray-200 !default;
 $progress-border-radius:            $border-radius !default;
 $progress-bar-color:                $white !default;
 $progress-bar-transition:           width .6s ease !default;
+
+// Select
+$select-item-transition:                 color .15s ease-in-out,border-color .15s ease-in-out !default;
