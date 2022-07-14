@@ -28,10 +28,12 @@ export interface FormItemProps {
   isCheckoutOnShow?: number;
   onValueChange?: (key: string, value: string) => void;
   defaultValue?: string;
+  /** 用作比对的表单默认值，请在Form组件传此参数。 */
+  initialValues?: Record<string, any>;
   children?: React.ReactNode;
 }
 
-const FormItem: React.FC<FormItemProps> = (props) => {
+export const FormItem: React.FC<FormItemProps> = (props) => {
   const {
     children,
     label,
@@ -44,8 +46,13 @@ const FormItem: React.FC<FormItemProps> = (props) => {
     validateTrigger,
     isCheckoutOnShow,
     trigger,
+    initialValues,
   } = props;
   const [valueIsOk, setValueIsOk] = useState(false);
+
+  //input value 相关
+  const [inputValue, setInputVale] = useState(defaultValue);
+
   const requiredClasses = classNames({
     "orange-form-item-required": rules && rules[0]?.required,
   });
@@ -79,6 +86,10 @@ const FormItem: React.FC<FormItemProps> = (props) => {
     },
     [name, rules]
   );
+
+  useEffect(() => {
+    setInputVale(defaultValue);
+  }, [defaultValue, initialValues]);
 
   useEffect(() => {
     if (isCheckoutOnShow) {
@@ -117,9 +128,18 @@ const FormItem: React.FC<FormItemProps> = (props) => {
     const preValidateTriggerEventStr = validateTrigger ? validateTrigger : "";
     // Object(childElement.props)[preTriggerEventStr]
     let childrenEvents: Record<string, any> = {};
+    let onChangeEvent: {} = {
+      onChange: (e: ChangeEvent<HTMLInputElement>) => {
+        setInputVale(e.target.value);
+      },
+    };
     if (validateTrigger && trigger && validateTrigger === trigger) {
+      if (trigger === "onChange") {
+        onChangeEvent = {};
+      }
       //同一个事件
       childrenEvents[trigger] = (e: ChangeEvent<HTMLInputElement>) => {
+        setInputVale(e.target.value);
         handleValueChange(e);
         handleViladateChange(e);
         if (
@@ -128,9 +148,13 @@ const FormItem: React.FC<FormItemProps> = (props) => {
           Object(childElement.props)[preTriggerEventStr](e);
       };
     } else if (validateTrigger && trigger) {
+      if (trigger === "onChange" || validateTrigger === "onChange") {
+        onChangeEvent = {};
+      }
       //不同事件
       //校验值的时机
       childrenEvents[validateTrigger] = (e: ChangeEvent<HTMLInputElement>) => {
+        if (validateTrigger === "onChange") setInputVale(e.target.value);
         if (
           Object(childElement.props)[preValidateTriggerEventStr] === "function"
         )
@@ -139,6 +163,7 @@ const FormItem: React.FC<FormItemProps> = (props) => {
       };
       //改变值的时机
       childrenEvents[trigger] = (e: ChangeEvent<HTMLInputElement>) => {
+        if (trigger === "onChange") setInputVale(e.target.value);
         if (
           typeof Object(childElement.props)[preTriggerEventStr] === "function"
         )
@@ -147,8 +172,11 @@ const FormItem: React.FC<FormItemProps> = (props) => {
       };
     }
     return React.cloneElement(childElement, {
-      defaultValue: defaultValue,
+      // defaultValue: defaultValue,
       ...childrenEvents,
+      ...onChangeEvent,
+      // checked: true,
+      value: inputValue,
     });
   };
 

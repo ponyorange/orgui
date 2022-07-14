@@ -41,15 +41,22 @@ export const Form: React.FC<FormProps> = (props) => {
   const [isCheckBalueState, setIsCheckBalueState] = useState(0);
 
   useEffect(() => {
+    console.log("改变了");
+    resultData.current = {};
+    return () => {};
+  }, [initialValues]);
+
+  useEffect(() => {
     if (formRef.current) {
       formRef.current.onsubmit = (e) => {
-        //点击登录按钮让item检查值
+        //点击submit按钮让item检查值
         setIsCheckBalueState(Date.now);
+        //检查值
         const descriptor = new Schema(resultDescriptor.current);
         descriptor.validate(resultData.current).then(
-          (res) => {
+          () => {
             if (onFinish) {
-              onFinish(res);
+              onFinish(resultData.current);
             }
           },
           ({ errors }) => {
@@ -68,7 +75,9 @@ export const Form: React.FC<FormProps> = (props) => {
   };
   const initDataAndDescriptor = (key: string, rules?: RuleItem[]) => {
     resultDescriptor.current[key] = rules;
-    if (initialValues && key) {
+    if (resultData.current && key) {
+      //组件刷新的时候恢复上一次的值
+    } else if (initialValues && key) {
       resultData.current[key] = initialValues[key];
     } else {
       resultData.current[key] = "";
@@ -83,12 +92,15 @@ export const Form: React.FC<FormProps> = (props) => {
           if (initialValues) {
             defaultVal = initialValues[childEle.props.name];
           }
+          console.log("defaultVal===", defaultVal);
           //初始化数据
           initDataAndDescriptor(childEle.props.name, childEle.props.rules);
+
           return React.cloneElement(childEle, {
             onValueChange: hangdleValuesChange,
             defaultValue: defaultVal,
             isCheckoutOnShow: isCheckBalueState,
+            initialValues: initialValues,
           });
         } else {
           if (childEle.props && childEle.props.children) {

@@ -37,12 +37,14 @@ function App() {
       .map((name) => ({ value: name }));
   };
   const onFormFinish = (data: Record<string, any>) => {
+    console.log("成功了");
     console.log(data);
   };
   const onFormFinishError = (
     values: Record<string, any>,
     errors: Record<string, ValidateError[]>
   ) => {
+    console.log("失败了");
     console.log(values, errors);
   };
   return (

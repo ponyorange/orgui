@@ -6,24 +6,25 @@ import Input from "../Input/input";
 import { Option, Select } from "../Select";
 import Button from "../Button/button";
 import { ValidateError } from "async-validator";
+import FormItem2 from "./formITem2";
 
 export default {
   title: "OrangeUI/Form",
   component: Form,
-  subcomponents: { FormItem },
+  subcomponents: { FormItem: FormItem2 },
 } as ComponentMeta<typeof Form>;
 
 const IntroTemplate: ComponentStory<typeof Form> = () => {
   const onFormFinish = (data: Record<string, any>) => {
-    console.log("成功了");
     console.log(data);
+    alert("数据校验成功并返回了");
   };
   const onFormFinishError = (
     values: Record<string, any>,
     errors: Record<string, ValidateError[]>
   ) => {
-    console.log("失败了");
     console.log(values, errors);
+    alert("数据校验失败了");
   };
   return (
     <div style={{ width: "80%", marginLeft: "5%" }}>
@@ -115,7 +116,7 @@ const SizeTemplate: ComponentStory<typeof Form> = (args) => {
             getValueFromEvent={(e) => e.target.checked}
             valuePropName="checked"
           >
-            <input type="checkbox" />
+            <input type="checkbox" style={{ marginRight: "6px" }} />
           </FormItem>
           <span className="agree-text">
             注册即代表你同意<a href="https://www.baidu.com">用户协议</a>
@@ -141,7 +142,7 @@ export const Size = SizeTemplate.bind({});
 Size.storyName = "基本的注册表单，支持多种FormItem";
 
 const TypeTemplate: ComponentStory<typeof Form> = (args) => {
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(true);
   const [isValid, setIsValid] = useState(true);
   const [confirmRules, setConfirmRules] = useState<Record<string, any>[]>([
     { required: true, type: "enum", enum: [""], message: "两次密码必须相同" },
@@ -155,7 +156,7 @@ const TypeTemplate: ComponentStory<typeof Form> = (args) => {
   };
   return (
     <Form
-      // initialValues={initialValues}
+      initialValues={initialValues}
       onFinish={() => {
         setIsSubmitting(false);
         setIsValid(true);
@@ -171,9 +172,11 @@ const TypeTemplate: ComponentStory<typeof Form> = (args) => {
     >
       <>
         <FormItem
-          label="用户名"
+          label="邮箱"
           name="username"
-          rules={[{ type: "email", required: true }]}
+          rules={[
+            { type: "email", required: true, message: "请输入正确的邮箱" },
+          ]}
         >
           <Input />
         </FormItem>
@@ -217,10 +220,10 @@ const TypeTemplate: ComponentStory<typeof Form> = (args) => {
             getValueFromEvent={(e) => e.target.checked}
             rules={[{ type: "enum", enum: [true], message: "请同意协议" }]}
           >
-            <input type="checkbox" />
+            <input type="checkbox" style={{ marginRight: "6px" }} />
           </FormItem>
           <span className="agree-text">
-            注册即代表你同意<a href="#">用户协议</a>
+            注册即代表你同意<a href="http://www.baidu.com">用户协议</a>
           </span>
         </div>
         <div
@@ -237,7 +240,7 @@ const TypeTemplate: ComponentStory<typeof Form> = (args) => {
               setIsSubmitting(true);
             }}
           >
-            登陆 {isSubmitting ? "验证中" : "验证完毕"}{" "}
+            登陆 {isSubmitting ? "点击验证" : "验证完毕"}{" "}
             {isValid ? "通过😄" : "没通过😢"}{" "}
           </Button>
           <Button type="button" onClick={resetAll}>
