@@ -16,7 +16,7 @@ const progressDivStyle = {
 const IntroTemplate: ComponentStory<typeof Progress> = () => {
   return (
     <div style={progressDivStyle}>
-      <Progress percent={90} />
+      <Progress percent={90} color={["#FFD700", "#FFA500"]} />
     </div>
   );
 };
@@ -33,7 +33,7 @@ const SizeTemplate: ComponentStory<typeof Progress> = (args) => {
 };
 
 export const Size = SizeTemplate.bind({});
-Size.storyName = "渐变的的Progress";
+Size.storyName = "多色渐变的的Progress";
 
 const TypeTemplate: ComponentStory<typeof Progress> = (args) => {
   return (
