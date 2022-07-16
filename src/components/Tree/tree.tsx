@@ -100,13 +100,20 @@ export const Tree: React.FC<TreeProps> = (props) => {
                 className="orange-tree-list-subtree-item"
                 data-title={item.title}
                 data-key={item.key}
+              >
+                <input type="checkbox" />
+              </span>
+              <span
+                className="orange-tree-list-subtree-item"
+                data-title={item.title}
+                data-key={item.key}
                 onClick={treeTitleClick}
               >
                 {item.title}
               </span>
             </div>
             <Transition in={item.isOpen} timeout={150} animation="zoom-in-top">
-              <>{renderTree(item.children)}</>
+              <div>{renderTree(item.children)}</div>
             </Transition>
           </div>
         );
@@ -115,11 +122,18 @@ export const Tree: React.FC<TreeProps> = (props) => {
           <div
             key={item.key}
             className="orange-tree-treeNode orange-tree-list-item"
-            data-title={item.title}
-            data-key={item.key}
-            onClick={treeTitleClick}
           >
-            {item.title}
+            <span>
+              <input type="checkbox" />
+            </span>
+            <span
+              data-title={item.title}
+              data-key={item.key}
+              onClick={treeTitleClick}
+              className="orange-tree-list-item-title"
+            >
+              {item.title}
+            </span>
           </div>
         );
       }

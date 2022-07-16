@@ -223,7 +223,7 @@ export const Carousel: React.FC<CarouselPros> = (props) => {
   //渲染返回
   return (
     <div className={carouselClass}>
-      <div>
+      <>
         {Array.isArray(childrenEles) ? (
           childrenEles.map((ele, index) => {
             return (
@@ -237,7 +237,7 @@ export const Carousel: React.FC<CarouselPros> = (props) => {
             {childrenEles}
           </div>
         )}
-      </div>
+      </>
       {/*  左右控制按钮*/}
       {isShowController && (
         <>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 import Progress from "./progress";
@@ -14,9 +14,22 @@ const progressDivStyle = {
   marginTop: "20px",
 };
 const IntroTemplate: ComponentStory<typeof Progress> = () => {
+  const [persent, setPersent] = useState(10);
+  useEffect(() => {
+    const timer = setInterval(() => {
+      if (persent < 91) {
+        setPersent(persent + 1);
+      } else {
+        setPersent(10);
+      }
+    }, 100);
+    return () => {
+      clearInterval(timer);
+    };
+  }, [persent]);
   return (
     <div style={progressDivStyle}>
-      <Progress percent={90} color={["#FFD700", "#FFA500"]} />
+      <Progress percent={persent} color={["#FFD700", "#FFA500"]} />
     </div>
   );
 };
