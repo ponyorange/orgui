@@ -24,7 +24,7 @@ export interface ProgressProps {
  * ### 使用：
  *
  * ~~~js
- * import { Progress } from 'orangui'
+ * import { Progress } from 'orgui'
  * ~~~
  *
  * ### 示例：

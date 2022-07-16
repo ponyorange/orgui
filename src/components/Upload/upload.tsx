@@ -51,7 +51,7 @@ export interface UploadProps {
  * ### 使用：
  *
  * ~~~js
- * import { Upload } from 'orangui'
+ * import { Upload } from 'orgui'
  * ~~~
  *
  * ### 示例：

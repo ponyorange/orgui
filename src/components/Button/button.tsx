@@ -24,7 +24,7 @@ export type ButtonProps = Partial<NativeButtonProps & AnchorButtonProps>; //Part
  * ### 使用：
  *
  * ~~~js
- * import { Button } from 'orangui'
+ * import { Button } from 'orgui'
  * ~~~
  *
  * ### 示例：

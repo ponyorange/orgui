@@ -17,7 +17,7 @@ interface TagViewProps {
  * ### 使用：
  *
  * ~~~js
- * import { TagView } from 'orangui'
+ * import { TagView } from 'orgui'
  * ~~~
  *
  * ### 示例：

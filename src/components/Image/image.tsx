@@ -128,7 +128,7 @@ Image.defaultProps = {
  * ### 使用：
  *
  * ~~~js
- * import { Image } from 'orangui'
+ * import { Image } from 'orgui'
  * ~~~
  * ### 示例
  *

@@ -34,7 +34,7 @@ export interface IconProps extends FontAwesomeIconProps {
  * ### 使用：
  *
  * ~~~js
- * import { Icon } from 'orangui'
+ * import { Icon } from 'orgui'
  * ~~~
  *
  * ### 示例：

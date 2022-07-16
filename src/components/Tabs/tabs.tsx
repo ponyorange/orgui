@@ -21,7 +21,7 @@ interface TabsProps {
  * ### 使用：
  *
  * ~~~js
- * import { Tabs, TabItem } from 'orangeui'
+ * import { Tabs, TabItem } from 'orgui'
  * ~~~
  *
  * ### 示例：

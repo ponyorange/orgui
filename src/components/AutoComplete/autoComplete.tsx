@@ -10,6 +10,7 @@ import React, {
 import classNames from "classnames";
 import Input, { InputProps } from "../Input/input";
 import Icon from "../Icon/icon";
+import HighLightSpan from "../HighLightSpan/highLightSpan";
 import Transition from "../Transition/transition";
 import useDebounce from "../../hooks/useDebounce";
 import useClickOutside from "../../hooks/useClickOutside";
@@ -36,7 +37,7 @@ export interface AutoCompleteProps extends Omit<InputProps, "onSelect"> {
  * ### 使用：
  *
  * ~~~js
- * import { AutoComplete } from 'orangui'
+ * import { AutoComplete } from 'orgui'
  * ~~~
  *
  * ### 示例：
@@ -122,7 +123,11 @@ export const AutoComplete: FC<AutoCompleteProps> = (props) => {
     triggerSearch.current = false;
   };
   const renderTemplate = (item: DataSourceType) => {
-    return renderOption ? renderOption(item) : item.value;
+    return renderOption ? (
+      renderOption(item)
+    ) : (
+      <HighLightSpan highLigh={inputValue}>{item.value}</HighLightSpan>
+    );
   };
   const generateDropdown = () => {
     return (

@@ -27,7 +27,7 @@ interface FormProps {
  * ### 使用：
  *
  * ~~~js
- * import { Form, FormItem } from 'orangui'
+ * import { Form, FormItem } from 'orgui'
  * ~~~
  *
  * ### 示例：

@@ -22,7 +22,13 @@ interface AlertProps {
  * ### 使用：
  *
  * ~~~js
- * import { Alert } from 'orangui'
+ *
+ * //在项目入口文件导入样式文件，比如src目录下的index.jsx或者app.jsx文件
+ * import 'orgui/dist/index.css'
+ *
+ * //在需要使用组件的页面导入组件
+ * import { Alert } from 'orgui'
+ *
  * ~~~
  *
  * ### 示例：

@@ -1,0 +1,174 @@
+.orange-carousel{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.carousel-space{
+  .orange-carousel-slide{
+    transform: scale(0);
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .orange-carousel-slide-left{
+    transition: all .4s linear;
+    position: absolute;
+    transform: translate(-20%,0) scale(.6);
+    z-index: 10;
+    width: 100%;
+  }
+  .orange-carousel-slide-right{
+    transition: all .4s linear;
+    position: absolute;
+    transform: translate(20%,0) scale(.6);
+    z-index: 20;
+    width: 100%;
+  }
+  .orange-carousel-slide-active{
+    transition: all .4s linear;
+    position: absolute;
+    transform: scale(.9);
+    z-index: 100;
+    width: 100%;
+  }
+}
+.carousel-scrollx{
+  width: 100%;
+  overflow: hidden;
+  .orange-carousel-slide{
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    width: 0;
+  }
+  .orange-carousel-slide-left{
+    transition: transform .4s linear;
+    position: absolute;
+    width: 100%;
+    transform: translate(-100%,0);
+    z-index: 10;
+  }
+  .orange-carousel-slide-right{
+    transition: transform .4s linear;
+    position: absolute;
+    width: 0;
+    transform: translate(100%,0);
+    z-index: 20;
+  }
+  .orange-carousel-slide-active{
+    transition: transform .4s linear;
+    position: absolute;
+    width: 100%;
+    transform: translate(0,0);
+    z-index: 100;
+  }
+}
+.carousel-fade{
+  width: 100%;
+  overflow: hidden;
+  .orange-carousel-slide{
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    width: 100%;
+    opacity: 0;
+  }
+  .orange-carousel-slide-left{
+    transition: opacity .7s linear;
+    position: absolute;
+    opacity: 1;
+    z-index: 10;
+  }
+  .orange-carousel-slide-right{
+    transition: opacity .7s linear;
+    position: absolute;
+    opacity: 0;
+    z-index: 20;
+  }
+  .orange-carousel-slide-active{
+    transition: opacity .7s linear;
+    position: absolute;
+    opacity: 1;
+    z-index: 100;
+  }
+}
+
+.carousel-left-controller{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 60px;
+  height: 100%;
+  background:linear-gradient(to right, rgba(0,0,0,.2), rgba(0,0,0,0));
+  z-index: 1000;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity .2s;
+  &:hover{
+    opacity: 1;
+  }
+}
+
+.carousel-right-controller{
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 60px;
+  height: 100%;
+  background:linear-gradient(to left, rgba(0,0,0,.2), rgba(0,0,0,0));
+  z-index: 1000;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity .2s;
+  &:hover{
+    opacity: 1;
+  }
+}
+
+.carousel-dots{
+  margin: 0;
+  padding: 0;
+  box-sizing: content-box;
+  display: flex;
+  list-style: none;
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  .dot{
+    box-sizing: content-box;
+    width: 14px;
+    height: 4px;
+    margin-left: 10px;
+    background-color: white;
+    cursor: pointer;
+    border: none;
+    border-radius: 2px;
+    opacity: .6;
+    transition: all .2s;
+    &:hover{
+      opacity: 1;
+    }
+    &:focus{
+      outline: none;
+    }
+  }
+  .dot-active{
+    opacity: 1;
+    width: 20px;
+  }
+}

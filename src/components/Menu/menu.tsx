@@ -29,7 +29,7 @@ export const MenuContext = createContext<IMenuContext>({ index: "0" });
  * ### 使用：
  *
  * ~~~js
- * import { Menu, MenuItem, SubMenu } from 'orangeui'
+ * import { Menu, MenuItem, SubMenu } from 'orgui'
  * ~~~
  *
  * ### 示例：

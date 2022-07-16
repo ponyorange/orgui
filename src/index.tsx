@@ -14,6 +14,9 @@ import { Select, Option } from "./components/Select";
 import { Tabs, TabItem } from "./components/Tabs";
 import TagView from "./components/TagView";
 import Upload from "./components/Upload";
+import HighLightSpan from "./components/HighLightSpan";
+import Carousel from "./components/Carousel/carousel";
+import Tree from "./components/Tree";
 
 library.add(fas);
 
@@ -36,4 +39,7 @@ export {
   TabItem,
   TagView,
   Upload,
+  HighLightSpan,
+  Carousel,
+  Tree,
 };

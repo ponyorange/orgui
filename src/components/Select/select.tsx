@@ -34,7 +34,7 @@ interface SelectProps {
  * ### 使用：
  *
  * ~~~js
- * import { Select, Option } from 'orangui'
+ * import { Select, Option } from 'orgui'
  * ~~~
  *
  * ### 示例：默认的Select

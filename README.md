@@ -13,6 +13,7 @@
 * Alert
 * AutoComplete
 * Button
+* Carousel
 * Form
 * Icon
 * Image
@@ -23,5 +24,7 @@
 * Tabs
 * TagView
 * Upload
+* HighLightSpan
+* Tree
 
 其它组件正在实现中...
