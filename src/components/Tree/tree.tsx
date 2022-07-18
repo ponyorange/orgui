@@ -59,7 +59,7 @@ export interface TreeProps {
  * ### 示例：
  */
 export const Tree: React.FC<TreeProps> = (props) => {
-  const { treeData } = props;
+  const { treeData, checkable } = props;
 
   const [treeDataStare, setTreeDataStare] = useState(treeData);
   const treeDataMap: Record<string, any> = useRef({});
@@ -96,13 +96,16 @@ export const Tree: React.FC<TreeProps> = (props) => {
               >
                 <Icon icon="caret-down" />
               </span>
-              <span
-                className="orange-tree-list-subtree-item"
-                data-title={item.title}
-                data-key={item.key}
-              >
-                <input type="checkbox" />
-              </span>
+              {/* 节点复选框 */}
+              {checkable && (
+                <span
+                  className="orange-tree-list-subtree-item"
+                  data-title={item.title}
+                  data-key={item.key}
+                >
+                  <input type="checkbox" />
+                </span>
+              )}
               <span
                 className="orange-tree-list-subtree-item"
                 data-title={item.title}
@@ -123,9 +126,12 @@ export const Tree: React.FC<TreeProps> = (props) => {
             key={item.key}
             className="orange-tree-treeNode orange-tree-list-item"
           >
-            <span>
-              <input type="checkbox" />
-            </span>
+            {/* 节点复选框 */}
+            {checkable && (
+              <span>
+                <input type="checkbox" />
+              </span>
+            )}
             <span
               data-title={item.title}
               data-key={item.key}

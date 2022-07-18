@@ -1,0 +1,30 @@
+.baseGridCss{
+  .orange-row>div{
+    text-align: center;
+    background-color: #faad3e;
+    padding: 16px 0;
+    min-height: 30px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    color: #fff;
+    border-radius: 0;
+  }
+  .orange-row>div:nth-child(2n+1){
+    background-color: #fad8a7;
+  }
+}
+
+.gutter-row{
+  color: white;
+  text-align: center;
+}
+.mycol{
+  background-color: #fad8a7;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  color: #fff;
+  &:nth-child(2n){
+    background-color: #faad3e;
+  }
+}

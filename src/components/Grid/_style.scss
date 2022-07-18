@@ -1,0 +1,75 @@
+$one-col-width: 100% / 24;
+
+// Row
+.orange-row{
+  display: flex;
+  flex-flow: row wrap;
+}
+
+// Col
+.orange-col{
+  position: relative;
+  max-width: 100%;
+  min-height: 1px;
+}
+
+/**   col    */
+@for $idx from 1 through 24 {
+  .orange-col-#{$idx} {
+    display: block;
+    flex: 0 0 $idx * $one-col-width;
+    max-width: $idx * $one-col-width;
+  }
+  /*  xs  宽度小于576px  */
+  @media screen and (max-width: 576px) and (min-width: 0px){
+    .orange-col-xs-#{$idx} {
+      display: block;
+      flex: 0 0 $idx * $one-col-width;;
+      max-width: $idx * $one-col-width;;
+    }
+  }
+  /*  sm  宽度大于等于576x  */
+  @media screen and (min-width: 576px) and (max-width: 768px){
+    .orange-col-sm-#{$idx} {
+      display: block;
+      flex: 0 0 $idx * $one-col-width;;
+      max-width: $idx * $one-col-width;;
+    }
+  }
+  /*  md  宽度大于等于768px  */
+  @media screen and (min-width: 768px) and (max-width: 992px){
+    .orange-col-md-#{$idx} {
+      display: block;
+      flex: 0 0 $idx * $one-col-width;;
+      max-width: $idx * $one-col-width;;
+    }
+  }
+  /*  lg  宽度大于等于992px  */
+  @media screen and (min-width: 992px) and (max-width: 1200px){
+    .orange-col-lg-#{$idx} {
+      display: block;
+      flex: 0 0 $idx * $one-col-width;;
+      max-width: $idx * $one-col-width;;
+    }
+  }
+  /*  xl  宽度大于等于1200px  */
+  @media screen and (min-width: 1200px) and (max-width: 1600px){
+    .orange-col-xl-#{$idx} {
+      display: block;
+      flex: 0 0 $idx * $one-col-width;;
+      max-width: $idx * $one-col-width;;
+    }
+  }
+  /*  xxl  宽度大于等于1600px  */
+  @media screen and (min-width: 1200px){
+    .orange-col-xxl-#{$idx} {
+      display: block;
+      flex: 0 0 $idx * $one-col-width;;
+      max-width: $idx * $one-col-width;;
+    }
+  }
+}
+//.orange-col-0{
+//  display: none;
+//}
+

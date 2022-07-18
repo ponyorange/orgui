@@ -1,0 +1,100 @@
+.orange-divider{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: #000000d9;
+  font-size: 14px;
+  font-variant: tabular-nums;
+  line-height: 1.5715;
+  list-style: none;
+  font-feature-settings: "tnum";
+  border-top: 1px solid $divider-color;
+  &.orange-divider-dashed{
+    background: none;
+    border-color: $divider-color;
+    border-style: dashed;
+    border-width: 1px 0 0;
+  }
+}
+.orange-divider-horizontal{
+  display: flex;
+  clear: both;
+  width: 100%;
+  min-width: 100%;
+  margin: 24px 0;
+}
+.orange-divider-vertical{
+  position: relative;
+  top: -0.06em;
+  display: inline-block;
+  height: 0.9em;
+  margin: 0 8px;
+  vertical-align: middle;
+  border-top: 0;
+  border-left: 1px solid $divider-color;
+}
+
+.orange-divider-inner-text {
+  display: inline-block;
+  padding: 0 1em;
+  color: $gray-600;
+}
+
+.orange-divider-with-text{
+  display: flex;
+  margin: 16px 0;
+  color: #000000d9;
+  font-weight: 500;
+  font-size: 16px;
+  white-space: nowrap;
+  text-align: center;
+  border-top: 0;
+  border-top-color: $divider-color;
+  &::before,
+  &::after{
+    position: relative;
+    top: 50%;
+    width: 50%;
+    border-top: 1px solid transparent;
+    border-top-color: inherit;
+    border-bottom: 0;
+    transform: translateY(50%);
+    content: "";
+  }
+  &.orange-divider-dashed{
+    border-width: 0;
+    &::before,
+    &::after{
+      border-style: dashed none none;
+    }
+  }
+}
+.orange-divider-with-text-left{
+  &::before{
+    top: 50%;
+    width: 5%;
+  }
+  &::after{
+    top: 50%;
+    width: 95%;
+  }
+}
+.orange-divider-with-text-right{
+  &::before{
+    top: 50%;
+    width: 95%;
+  }
+  &::after{
+    top: 50%;
+    width: 5%;
+  }
+}
+.orange-divider-with-text-center{
+
+}
+
+.orange-divider-plain{
+  color: #000000d9;
+  font-weight: 400;
+  font-size: 14px;
+}

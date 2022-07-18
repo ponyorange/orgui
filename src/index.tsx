@@ -17,6 +17,8 @@ import Upload from "./components/Upload";
 import HighLightSpan from "./components/HighLightSpan";
 import Carousel from "./components/Carousel/carousel";
 import Tree from "./components/Tree";
+import { Row, Col } from "./components/Grid";
+import Divider from "./components/Divider";
 
 library.add(fas);
 
@@ -42,4 +44,7 @@ export {
   HighLightSpan,
   Carousel,
   Tree,
+  Row,
+  Col,
+  Divider,
 };

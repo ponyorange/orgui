@@ -5,7 +5,7 @@ import Icon from "../Icon/icon";
 type ImageModeType = "fit" | "fill" | "cover";
 type ImageSizeType = "normal" | "large" | "small";
 type ImageStatus = "loading" | "sus" | "err";
-interface BaseImageProps {
+interface BaseImageProps extends ImgHTMLAttributes<HTMLElement> {
   /**
    * 图片展示模式 fit：等比例缩放图片到容器 ｜ fill：等比例拉伸填充
    */
@@ -41,6 +41,7 @@ export const Image: FC<ImageProps> = (props) => {
     onImgLoadSus,
     onImgLoadErr,
     size,
+    ...restProps
   } = props;
   //如果不需要缓存，则更新src
   let imgSrc = src;
@@ -101,6 +102,7 @@ export const Image: FC<ImageProps> = (props) => {
           className={classes}
           onLoad={imgLoadSus}
           onError={imgLoadErr}
+          {...restProps}
         />
       )}
       {imgStatus === "err" && (

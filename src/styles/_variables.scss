@@ -17,7 +17,7 @@ $indigo:  #6610f2 !default;
 $purple:  #6f42c1 !default;
 $pink:    #d63384 !default;
 $red:     #d9534f !default;
-$orange:  rgb(240, 173, 78) !default;
+$orange:  #f0ad4e !default;
 $yellow:  #fadb14 !default;
 $green:   #5cb85c !default;
 $teal:    #20c997 !default;
@@ -25,7 +25,7 @@ $cyan:    #5bc0de !default;
 
 /** 系统色板 **/
 $primary:       $orange !default;
-$secondary:     $blue !default;
+$secondary:     $gray-600 !default;
 $success:       $green !default;
 $info:          $cyan !default;
 $warning:       $yellow !default;
@@ -320,4 +320,7 @@ $orange-tree-list-item-margin-left: 20px !default;
 
 $orange-tree-treeNode-padding: 0 0 4px !default;
 
-$orange-tree-list-item-title-padding: 2px 6px !default;;
+$orange-tree-list-item-title-padding: 2px 6px !default;
+
+// Divider
+$divider-color: rgba(0,0,0,.1);

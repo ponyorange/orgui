@@ -31,6 +31,12 @@ library.add(fas);
       grid-template-rows: 1fr 1fr;
       row-gap: 10px;
     }
+    .color-list{
+      display: grid;
+      grid-template-columns: repeat(6,1fr);
+      grid-template-rows: 1fr 1fr;
+      row-gap: 10px;
+    }
 
     @media (min-width: 620px) {
       .link-list {
@@ -163,12 +169,205 @@ import 'orgui/dist/index.css'
   </a>
 </div>
 
+## 组件库色板
+
+<div className="subheading">基础色板:</div>
+<div className="color-list">
+  <div
+    className="link-item color-item"
+    style={{height:"60px",display:"flex",alignItems:"center"}}
+  >
+    <div style={{width:"2vw",height:"2vw",backgroundColor:"#0275d8"}}> </div>
+    <span style={{marginLeft:"6px"}}>
+      <strong>blue</strong>
+      #0275d8
+    </span>
+  </div>
+  <div
+    className="link-item color-item"
+    style={{height:"60px",display:"flex",alignItems:"center"}}
+  >
+    <div style={{width:"2vw",height:"2vw",backgroundColor:"#6610f2"}}> </div>
+    <span style={{marginLeft:"6px"}}>
+      <strong>indigo</strong>
+      #6610f2
+    </span>
+  </div>
+  <div
+    className="link-item color-item"
+    style={{height:"60px",display:"flex",alignItems:"center"}}
+  >
+    <div style={{width:"2vw",height:"2vw",backgroundColor:"#6f42c1"}}> </div>
+    <span style={{marginLeft:"6px"}}>
+      <strong>purple</strong>
+      #6f42c1
+    </span>
+  </div>
+  <div
+    className="link-item color-item"
+    style={{height:"60px",display:"flex",alignItems:"center"}}
+  >
+    <div style={{width:"2vw",height:"2vw",backgroundColor:"#d63384"}}> </div>
+    <span style={{marginLeft:"6px"}}>
+      <strong>pink</strong>
+      #d63384
+    </span>
+  </div>
+  <div
+    className="link-item color-item"
+    style={{height:"60px",display:"flex",alignItems:"center"}}
+  >
+    <div style={{width:"2vw",height:"2vw",backgroundColor:"#d9534f"}}> </div>
+    <span style={{marginLeft:"6px"}}>
+      <strong>red</strong>
+      #d9534f
+    </span>
+  </div>
+  <div
+    className="link-item color-item"
+    style={{height:"60px",display:"flex",alignItems:"center"}}
+  >
+    <div style={{width:"2vw",height:"2vw",backgroundColor:"#f0ad4e"}}> </div>
+    <span style={{marginLeft:"6px"}}>
+      <strong>orange</strong>
+      #f0ad4e
+    </span>
+  </div>
+  <div
+    className="link-item color-item"
+    style={{height:"60px",display:"flex",alignItems:"center"}}
+  >
+    <div style={{width:"2vw",height:"2vw",backgroundColor:"#fadb14"}}> </div>
+    <span style={{marginLeft:"6px"}}>
+      <strong>yellow</strong>
+      #fadb14
+    </span>
+  </div>
+  <div
+    className="link-item color-item"
+    style={{height:"60px",display:"flex",alignItems:"center"}}
+  >
+    <div style={{width:"2vw",height:"2vw",backgroundColor:"#5cb85c"}}> </div>
+    <span style={{marginLeft:"6px"}}>
+      <strong>green</strong>
+      #5cb85c
+    </span>
+  </div>
+  <div
+    className="link-item color-item"
+    style={{height:"60px",display:"flex",alignItems:"center"}}
+  >
+    <div style={{width:"2vw",height:"2vw",backgroundColor:"#20c997"}}> </div>
+    <span style={{marginLeft:"6px"}}>
+      <strong>teal</strong>
+      #20c997
+    </span>
+  </div>
+  <div
+    className="link-item color-item"
+    style={{height:"60px",display:"flex",alignItems:"center"}}
+  >
+    <div style={{width:"2vw",height:"2vw",backgroundColor:"#5bc0de"}}> </div>
+    <span style={{marginLeft:"6px"}}>
+      <strong>cyan</strong>
+      #5bc0de
+    </span>
+  </div>
+</div>
+
+<div className="subheading">系统色板:</div>
+<div className="color-list" style={{paddingBottom:"30px"}}>
+  <div
+    className="link-item color-item"
+    style={{height:"60px",display:"flex",alignItems:"center"}}
+  >
+    <div style={{width:"2vw",height:"2vw",backgroundColor:"#f0ad4e"}}> </div>
+    <span style={{marginLeft:"6px"}}>
+      <strong>primary</strong>
+      orange
+    </span>
+  </div>
+  <div
+    className="link-item color-item"
+    style={{height:"60px",display:"flex",alignItems:"center"}}
+  >
+    <div style={{width:"2vw",height:"2vw",backgroundColor:"#6c757d"}}> </div>
+    <span style={{marginLeft:"6px"}}>
+      <strong>secondary</strong>
+      gray-600
+    </span>
+  </div>
+  <div
+    className="link-item color-item"
+    style={{height:"60px",display:"flex",alignItems:"center"}}
+  >
+    <div style={{width:"2vw",height:"2vw",backgroundColor:"#5cb85c"}}> </div>
+    <span style={{marginLeft:"6px"}}>
+      <strong>success</strong>
+      green
+    </span>
+  </div>
+  <div
+    className="link-item color-item"
+    style={{height:"60px",display:"flex",alignItems:"center"}}
+  >
+    <div style={{width:"2vw",height:"2vw",backgroundColor:"#5bc0de"}}> </div>
+    <span style={{marginLeft:"6px"}}>
+      <strong>info</strong>
+      cyan
+    </span>
+  </div>
+  <div
+    className="link-item color-item"
+    style={{height:"60px",display:"flex",alignItems:"center"}}
+  >
+    <div style={{width:"2vw",height:"2vw",backgroundColor:"#fadb14"}}> </div>
+    <span style={{marginLeft:"6px"}}>
+      <strong>warning</strong>
+      yellow
+    </span>
+  </div>
+  <div
+    className="link-item color-item"
+    style={{height:"60px",display:"flex",alignItems:"center"}}
+  >
+    <div style={{width:"2vw",height:"2vw",backgroundColor:"#d9534f"}}> </div>
+    <span style={{marginLeft:"6px"}}>
+      <strong>danger</strong>
+      red
+    </span>
+  </div>
+  <div
+    className="link-item color-item"
+    style={{height:"60px",display:"flex",alignItems:"center"}}
+  >
+    <div style={{width:"2vw",height:"2vw",backgroundColor:"#f8f9fa"}}> </div>
+    <span style={{marginLeft:"6px"}}>
+      <strong>light</strong>
+      gray-100
+    </span>
+  </div>
+  <div
+    className="link-item color-item"
+    style={{height:"60px",display:"flex",alignItems:"center"}}
+  >
+    <div style={{width:"2vw",height:"2vw",backgroundColor:"#343a40"}}> </div>
+    <span style={{marginLeft:"6px"}}>
+      <strong>dark</strong>
+      gray-800
+    </span>
+  </div>
+</div>
+
+
 ## 目前实现的组件
 * Alert
 * AutoComplete
 * Button
 * Carousel
+* Divider
 * Form
+* Grid
 * Icon
 * Image
 * Input

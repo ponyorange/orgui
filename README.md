@@ -14,7 +14,9 @@
 * AutoComplete
 * Button
 * Carousel
+* Divider
 * Form
+* Grid
 * Icon
 * Image
 * Input
