@@ -181,7 +181,7 @@ export const FormItem: React.FC<FormItemProps> = (props) => {
   };
 
   return (
-    <div className="orange-row">
+    <div className="orange-form-row">
       <div className="orange-form-item-label">
         <label className={requiredClasses}>{label}</label>
       </div>

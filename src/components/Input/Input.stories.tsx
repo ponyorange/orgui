@@ -1,4 +1,4 @@
-import React from "react";
+import React, { RefAttributes, useRef } from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 import Input from "./input";
@@ -12,9 +12,10 @@ const defaultStyle = {
   margin: "10px 30px",
   width: "80%",
 };
-const IntroTemplate: ComponentStory<typeof Input> = () => (
-  <Input style={defaultStyle} placeholder="默认的Input" />
-);
+const IntroTemplate: ComponentStory<typeof Input> = () => {
+  const myInput = useRef<HTMLInputElement>(null);
+  return <Input style={defaultStyle} placeholder="默认的Input" ref={myInput} />;
+};
 
 export const Introduction = IntroTemplate.bind({});
 Introduction.storyName = "默认的Input";

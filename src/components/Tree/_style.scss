@@ -16,6 +16,11 @@
         margin-left: $orange-tree-list-subtree-margin-left;
         .orange-tree-list-subtree-angle{
           cursor: pointer;
+          display: inline-block;
+          transition: transform .2s;
+        }
+        .orange-tree-list-subtree-angle-close{
+          transform: rotate(180deg);
         }
         .orange-tree-list-subtree-item{
           margin: 0 0 0 $orange-tree-list-subtree-item-margin-left;

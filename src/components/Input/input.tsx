@@ -1,4 +1,9 @@
-import React, { FC, ReactElement, InputHTMLAttributes } from "react";
+import React, {
+  ReactElement,
+  InputHTMLAttributes,
+  forwardRef,
+  // useImperativeHandle,
+} from "react";
 import classNames from "classnames";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import Icon from "../Icon/icon";
@@ -30,7 +35,7 @@ export interface InputProps
  * ~~~
  * 支持 HTMLInput 的所有基本属性
  */
-export const Input: FC<InputProps> = (props) => {
+export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   const {
     disabled,
     size,
@@ -58,7 +63,8 @@ export const Input: FC<InputProps> = (props) => {
     delete restProps.defaultValue;
     restProps.value = fixControlledValue(props.value);
   }
-
+  //暴露方法给父组件
+  // useImperativeHandle(ref, () => ({}));
   return (
     <div className={cnames} style={style}>
       {prepend && <div className="orange-input-group-prepend">{prepend}</div>}
@@ -70,11 +76,12 @@ export const Input: FC<InputProps> = (props) => {
       <input
         className="orange-input-inner"
         disabled={disabled}
+        ref={ref}
         {...restProps}
       />
       {append && <div className="orange-input-group-append">{append}</div>}
     </div>
   );
-};
+});
 
 export default Input;

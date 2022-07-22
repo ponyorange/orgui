@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import Icon from "../Icon";
 import Transition from "../Transition/transition";
+import classNames from "classnames";
 
 export type DataNode = {
   checkable?: boolean;
@@ -83,6 +84,9 @@ export const Tree: React.FC<TreeProps> = (props) => {
         if (item.isOpen === undefined) {
           item.isOpen = true;
         }
+        const angleClasses = classNames("orange-tree-list-subtree-angle", {
+          "orange-tree-list-subtree-angle-close": !item.isOpen,
+        });
         return (
           <div
             key={item.key}
@@ -90,7 +94,7 @@ export const Tree: React.FC<TreeProps> = (props) => {
           >
             <div>
               <span
-                className="orange-tree-list-subtree-angle"
+                className={angleClasses}
                 data-key={item.key}
                 onClick={subTreeTringleClick}
               >

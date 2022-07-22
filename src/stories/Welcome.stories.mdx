@@ -4,6 +4,7 @@ import Npm from './assets/npm.svg';
 import StackAlt from './assets/stackalt.svg';
 
 import '../styles/index.scss'
+
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 library.add(fas);
@@ -122,9 +123,15 @@ library.add(fas);
 </style>
 
 # Welcome to OrangeUI
-这是一套基于typescript、React FunctionComponent 和 React Hooks ，模仿Antd实现的UI组件库。
+### 这是一套基于typescript、React FunctionComponent 和 React Hooks ，模仿Antd实现的UI组件库。
 
-如果你也喜欢自己动手实现自己的组件库，欢迎与我交流👏
+除了模仿以外，部分组件还加入了自己的想法💡，比如跑马灯组件(Carousel)的轮播效果～
+
+除了Antd里有的组件外，还加入了一些新的组件（我个人认为有用的组件），比如说HighLighSpan，可以让文本某些文字高亮,常用于搜索场景。
+
+当然并不是所有组件都按Antd 1 ：1 还原了，部分繁琐的组件还在一步步实现优化中...比如Tree组件，可不是个小家伙
+
+努力💪，共勉！如果你也喜欢自己动手实现自己的组件库，欢迎与我交流👏
 ## 安装体验👇👇👇
 ```js
 npm install orgui --save
