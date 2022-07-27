@@ -71,6 +71,7 @@ const IntroTemplate: ComponentStory<typeof Tree> = () => {
       onSelect={onSelect}
       onCheck={onCheck}
       treeData={treeData}
+      // checkable
     />
   );
 };

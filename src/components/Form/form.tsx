@@ -92,7 +92,7 @@ export const Form: React.FC<FormProps> = (props) => {
           if (initialValues) {
             defaultVal = initialValues[childEle.props.name];
           }
-          console.log("defaultVal===", defaultVal);
+          // console.log("defaultVal===", defaultVal);
           //初始化数据
           initDataAndDescriptor(childEle.props.name, childEle.props.rules);
 

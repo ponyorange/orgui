@@ -13,6 +13,7 @@
 * Alert
 * AutoComplete
 * Button
+* Checkbox
 * Carousel
 * Divider
 * Form

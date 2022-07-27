@@ -1,7 +1,8 @@
-import React, { ChangeEvent, useRef, useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 import { Form, FormItem } from "./index";
+import Checkbox from "../Checkbox/chexkbox";
 import Input from "../Input/input";
 import { Option, Select } from "../Select";
 import Button from "../Button/button";
@@ -31,7 +32,7 @@ const IntroTemplate: ComponentStory<typeof Form> = () => {
       <Form
         onFinish={onFormFinish}
         onFinishFailed={onFormFinishError}
-        initialValues={{ username: "orange", agreement: false }}
+        // initialValues={{ username: "orange", agreement: false }}
       >
         <FormItem
           label="用户名"
@@ -116,11 +117,18 @@ const SizeTemplate: ComponentStory<typeof Form> = (args) => {
             getValueFromEvent={(e) => e.target.checked}
             valuePropName="checked"
           >
-            <input type="checkbox" style={{ marginRight: "6px" }} />
+            <Checkbox>
+              <span
+                className="agree-text"
+                style={{ display: "flex", width: "200px" }}
+              >
+                注册即代表你同意
+                <a href="http://www.baidu.com" style={{ marginLeft: "4px" }}>
+                  用户协议
+                </a>
+              </span>
+            </Checkbox>
           </FormItem>
-          <span className="agree-text">
-            注册即代表你同意<a href="https://www.baidu.com">用户协议</a>
-          </span>
         </div>
         <div
           style={{
@@ -157,9 +165,11 @@ const TypeTemplate: ComponentStory<typeof Form> = (args) => {
   return (
     <Form
       initialValues={initialValues}
-      onFinish={() => {
+      onFinish={(data: Record<string, any>) => {
         setIsSubmitting(false);
         setIsValid(true);
+        console.log(data);
+        alert("数据校验成功");
       }}
       onFinishFailed={(
         values: Record<string, any>,
@@ -168,6 +178,7 @@ const TypeTemplate: ComponentStory<typeof Form> = (args) => {
         console.log(values);
         setIsSubmitting(false);
         setIsValid(false);
+        alert("数据校验失败");
       }}
     >
       <>
@@ -220,11 +231,18 @@ const TypeTemplate: ComponentStory<typeof Form> = (args) => {
             getValueFromEvent={(e) => e.target.checked}
             rules={[{ type: "enum", enum: [true], message: "请同意协议" }]}
           >
-            <input type="checkbox" style={{ marginRight: "6px" }} />
+            <Checkbox>
+              <span
+                className="agree-text"
+                style={{ display: "flex", width: "200px" }}
+              >
+                注册即代表你同意
+                <a href="http://www.baidu.com" style={{ marginLeft: "4px" }}>
+                  用户协议
+                </a>
+              </span>
+            </Checkbox>
           </FormItem>
-          <span className="agree-text">
-            注册即代表你同意<a href="http://www.baidu.com">用户协议</a>
-          </span>
         </div>
         <div
           style={{

@@ -1,10 +1,10 @@
 import React, {
   ChangeEvent,
   InputHTMLAttributes,
+  useCallback,
   useEffect,
   useRef,
   useState,
-  useCallback,
 } from "react";
 import Schema, { RuleItem } from "async-validator";
 import classNames from "classnames";
@@ -58,7 +58,6 @@ export const FormItem: React.FC<FormItemProps> = (props) => {
   });
 
   const valRef = useRef<string>("");
-  if (defaultValue) valRef.current = defaultValue;
 
   const [controllerItemClass, setControllerItemClass] = useState(
     "orange-form-item-control"
@@ -89,6 +88,7 @@ export const FormItem: React.FC<FormItemProps> = (props) => {
 
   useEffect(() => {
     setInputVale(defaultValue);
+    if (defaultValue) valRef.current = defaultValue;
   }, [defaultValue, initialValues]);
 
   useEffect(() => {
@@ -109,13 +109,13 @@ export const FormItem: React.FC<FormItemProps> = (props) => {
       }
     }
     // checkValue(val);
-
     valRef.current = val;
     if (onValueChange) {
       onValueChange(name, val);
     }
   };
   const handleViladateChange = (e: ChangeEvent<HTMLInputElement>) => {
+    // valRef.current = getValueFromEvent ? getValueFromEvent(e) : e.target.value;
     checkValue(valRef.current);
   };
 
@@ -130,7 +130,7 @@ export const FormItem: React.FC<FormItemProps> = (props) => {
     let childrenEvents: Record<string, any> = {};
     let onChangeEvent: {} = {
       onChange: (e: ChangeEvent<HTMLInputElement>) => {
-        setInputVale(e.target.value);
+        setInputVale(getValueFromEvent ? getValueFromEvent(e) : e.target.value);
       },
     };
     if (validateTrigger && trigger && validateTrigger === trigger) {
@@ -139,7 +139,7 @@ export const FormItem: React.FC<FormItemProps> = (props) => {
       }
       //同一个事件
       childrenEvents[trigger] = (e: ChangeEvent<HTMLInputElement>) => {
-        setInputVale(e.target.value);
+        setInputVale(getValueFromEvent ? getValueFromEvent(e) : e.target.value);
         handleValueChange(e);
         handleViladateChange(e);
         if (
@@ -154,7 +154,10 @@ export const FormItem: React.FC<FormItemProps> = (props) => {
       //不同事件
       //校验值的时机
       childrenEvents[validateTrigger] = (e: ChangeEvent<HTMLInputElement>) => {
-        if (validateTrigger === "onChange") setInputVale(e.target.value);
+        if (validateTrigger === "onChange")
+          setInputVale(
+            getValueFromEvent ? getValueFromEvent(e) : e.target.value
+          );
         if (
           Object(childElement.props)[preValidateTriggerEventStr] === "function"
         )
@@ -163,7 +166,10 @@ export const FormItem: React.FC<FormItemProps> = (props) => {
       };
       //改变值的时机
       childrenEvents[trigger] = (e: ChangeEvent<HTMLInputElement>) => {
-        if (trigger === "onChange") setInputVale(e.target.value);
+        if (trigger === "onChange")
+          setInputVale(
+            getValueFromEvent ? getValueFromEvent(e) : e.target.value
+          );
         if (
           typeof Object(childElement.props)[preTriggerEventStr] === "function"
         )

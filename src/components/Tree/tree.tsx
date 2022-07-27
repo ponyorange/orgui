@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import Icon from "../Icon";
+import Checkbox from "../Checkbox";
 import Transition from "../Transition/transition";
 import classNames from "classnames";
 
@@ -107,7 +108,7 @@ export const Tree: React.FC<TreeProps> = (props) => {
                   data-title={item.title}
                   data-key={item.key}
                 >
-                  <input type="checkbox" />
+                  <Checkbox />
                 </span>
               )}
               <span
@@ -133,7 +134,7 @@ export const Tree: React.FC<TreeProps> = (props) => {
             {/* 节点复选框 */}
             {checkable && (
               <span>
-                <input type="checkbox" />
+                <Checkbox />
               </span>
             )}
             <span

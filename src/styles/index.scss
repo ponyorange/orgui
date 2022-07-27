@@ -1,62 +1,64 @@
 @import "variables";
-//layout
+// layout
 @import "reboot";
-//mixin
+// mixin
 @import "mixin";
 // animation
 @import "animation";
 
-//按钮
+// Button
 @import "../components/Button/style";
 
-//菜单
+// Menu
 @import "../components/Menu/style";
 
-// icon
+// Icon
 @import "../components/Icon/style";
 
-//Image
+// Image
 @import "../components/Image/style";
 
-//TagView
+// TagView
 @import "../components/TagView/style";
 
-//Alert
+// Alert
 @import "../components/Alert/style";
 
-//Tabs
+// Tabs
 @import "../components/Tabs/style";
 
-//Input
+// Input
 @import "../components/Input/style";
 
-//Select
+// Select
 @import "../components/Select/style";
 
-//AutoComplete
+// AutoComplete
 @import "../components/AutoComplete/style";
 
-//Progress
+// Progress
 @import "../components/Progress/style";
 
-//Upload
+// Upload
 @import "../components/Upload/style";
 
-//Form
+// Form
 @import "../components/Form/style";
 
-//HighLighSpan
+// HighLighSpan
 @import "../components/HighLightSpan/style";
 
-//Carousel
+// Carousel
 @import "../components/Carousel/style";
 
-//Tree
+// Tree
 @import "../components/Tree/style";
 
-//Grid
+// Grid
 @import "../components/Grid/style";
 
-//Divider
+// Divider
 @import "../components/Divider/style";
 
+// Checkbox
+@import "../components/Checkbox/style";

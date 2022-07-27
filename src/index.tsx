@@ -19,6 +19,7 @@ import Carousel from "./components/Carousel/carousel";
 import Tree from "./components/Tree";
 import { Row, Col } from "./components/Grid";
 import Divider from "./components/Divider";
+import Checkbox from "./components/Checkbox";
 
 library.add(fas);
 
@@ -47,4 +48,5 @@ export {
   Row,
   Col,
   Divider,
+  Checkbox,
 };
