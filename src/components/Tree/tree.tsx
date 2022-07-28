@@ -15,6 +15,8 @@ export type DataNode = {
   isOpen?: boolean;
 };
 export interface TreeProps {
+  /** treeNodes 数据，如果设置则不需要手动构造 TreeNode 节点（key 在整个树范围内唯一） */
+  treeData: DataNode[];
   /** 节点前添加 Checkbox 复选框 */
   checkable?: boolean;
   /** 自动展开父节点 */
@@ -54,8 +56,6 @@ export interface TreeProps {
   ) => void;
   /** 节点展开/关闭时触发 */
   onExpand?: (expandedKeysValue: React.Key[]) => void;
-  /** treeNodes 数据，如果设置则不需要手动构造 TreeNode 节点（key 在整个树范围内唯一） */
-  treeData: DataNode[];
 }
 /**
  * 多层次的结构列表。
@@ -138,15 +138,27 @@ export const Tree: React.FC<TreeProps> = (props) => {
           }
         };
 
-        let subtreeChecked = true;
+        let subtreeChecked = false;
         let subtreeIndeterminate = false;
-        item.children.forEach((citem) => {
-          if (checkedKeys.includes(citem.key)) {
-            subtreeIndeterminate = true;
-          } else {
-            subtreeChecked = false;
-          }
-        });
+        let subtreeCheckedCount = 0;
+        let subtreeItemCount = 0;
+        const queue = [item.children];
+        while (queue.length > 0) {
+          const child = queue.shift();
+          child?.forEach((c) => {
+            if (c.children) queue.push(c.children);
+            subtreeItemCount += 1;
+            if (checkedKeys.includes(c.key)) {
+              subtreeCheckedCount += 1;
+            }
+          });
+        }
+
+        if (subtreeCheckedCount === subtreeItemCount) {
+          subtreeChecked = true;
+        } else if (subtreeCheckedCount > 0) {
+          subtreeIndeterminate = true;
+        }
 
         return (
           <div
@@ -201,7 +213,7 @@ export const Tree: React.FC<TreeProps> = (props) => {
 
         const checkboxChange = (e: ChangeEvent<HTMLInputElement>) => {
           console.log(item.key, e.target.checked);
-          if (e.target.checked) {
+          if (!checkedKeys.includes(item.key)) {
             setCheckedKeys([item.key, ...checkedKeys]);
           } else {
             setCheckedKeys(checkedKeys.filter((it) => it !== item.key));
