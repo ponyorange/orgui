@@ -61,11 +61,8 @@ export const Image: FC<ImageProps> = (props) => {
   useEffect(() => {
     function isInViewPortOfOne(element: HTMLDivElement) {
       const rect = element.getBoundingClientRect();
-
       const yInView = rect.top < window.innerHeight && rect.bottom > 0;
-
       const xInView = rect.left < window.innerWidth && rect.right > 0;
-
       return yInView && xInView;
     }
     function handleScroller() {
