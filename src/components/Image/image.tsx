@@ -1,4 +1,11 @@
-import React, { FC, ImgHTMLAttributes, useEffect, useState, memo } from "react";
+import React, {
+  FC,
+  ImgHTMLAttributes,
+  useEffect,
+  useState,
+  memo,
+  useRef,
+} from "react";
 import classNames from "classnames";
 import Icon from "../Icon/icon";
 
@@ -14,8 +21,10 @@ interface BaseImageProps extends ImgHTMLAttributes<HTMLElement> {
    * 图片地址
    */
   src: string;
+  /** 是否懒加载 */
+  isLazy?: boolean;
   /**
-   * 是用浏览器到缓存图片
+   * 是否用浏览器到缓存图片
    */
   needCache?: boolean; //浏览器默认会缓存图片，设置不需要缓存则每次都会更新图片请求
   className?: string;
@@ -41,8 +50,42 @@ export const Image: FC<ImageProps> = (props) => {
     onImgLoadSus,
     onImgLoadErr,
     size,
+    isLazy,
     ...restProps
   } = props;
+
+  /** 判断图片是否已经加载了，如果是true，不能转为false，只能改变一次状态 */
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
+
+  const containerRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    function isInViewPortOfOne(element: HTMLDivElement) {
+      const rect = element.getBoundingClientRect();
+
+      const yInView = rect.top < window.innerHeight && rect.bottom > 0;
+
+      const xInView = rect.left < window.innerWidth && rect.right > 0;
+
+      return yInView && xInView;
+    }
+    function handleScroller(e: Event) {
+      if (containerRef.current) {
+        if (isInViewPortOfOne(containerRef.current) && !isImageLoaded) {
+          setIsImageLoaded(true);
+        }
+      }
+    }
+    //处理懒加载
+    if (isLazy) {
+      window.addEventListener("scroll", handleScroller);
+      return () => {
+        window.removeEventListener("scroll", handleScroller);
+      };
+    } else {
+      setIsImageLoaded(true);
+    }
+  }, [isLazy]);
+
   //如果不需要缓存，则更新src
   let imgSrc = src;
   if (!needCache) {
@@ -79,8 +122,8 @@ export const Image: FC<ImageProps> = (props) => {
   const loadingIconStyle = {
     marginLeft: "6px",
   };
-  return (
-    <div className={contianerClasses}>
+  return isImageLoaded ? (
+    <div className={contianerClasses} ref={containerRef}>
       {imgStatus === "loading" && (
         <div className="img-loading">
           <div>
@@ -114,6 +157,10 @@ export const Image: FC<ImageProps> = (props) => {
         </div>
       )}
     </div>
+  ) : (
+    <div className={contianerClasses} ref={containerRef}>
+      {" "}
+    </div>
   );
 };
 
@@ -122,10 +169,13 @@ Image.defaultProps = {
   needCache: true,
   size: "normal",
   alt: "img",
+  isLazy: false,
 };
 
 /**
  * 图片的最大痛点就是图片加载失败或者加载中时的显示缺陷，这个组件就是为了解决这个问题
+ *
+ * 同时加入了图片懒加载，图片去缓存等功能
  *
  * ### 使用：
  *
