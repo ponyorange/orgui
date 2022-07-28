@@ -68,7 +68,7 @@ export const Image: FC<ImageProps> = (props) => {
 
       return yInView && xInView;
     }
-    function handleScroller(e: Event) {
+    function handleScroller() {
       if (containerRef.current) {
         if (isInViewPortOfOne(containerRef.current) && !isImageLoaded) {
           setIsImageLoaded(true);
@@ -77,6 +77,7 @@ export const Image: FC<ImageProps> = (props) => {
     }
     //处理懒加载
     if (isLazy) {
+      handleScroller();
       window.addEventListener("scroll", handleScroller);
       return () => {
         window.removeEventListener("scroll", handleScroller);

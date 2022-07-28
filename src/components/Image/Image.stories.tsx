@@ -27,6 +27,8 @@ Introduction.args = {
   src: "https://pic1.zhimg.com/80/v2-235ab378ef0c0bd388ab7c92f3127240_1440w.jpg",
   mode: "cover",
   size: "normal",
+  isLazy: true,
+  style: { borderRadius: "4px", overflow: "hidden" },
 };
 
 const LazyTemplate: ComponentStory<typeof Image> = (args) => {
