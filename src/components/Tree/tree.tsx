@@ -33,7 +33,7 @@ export interface TreeProps {
   checkedKeys?: React.Key[];
   /** （受控）设置选中的树节点 */
   selectedKeys?: React.Key[];
-  /** 点击复选框触发 */
+  /** 点击树节点触发 */
   onSelect?: (
     selectedKeys: React.Key[],
     e: {
@@ -43,7 +43,7 @@ export interface TreeProps {
       event: React.MouseEvent;
     }
   ) => void;
-  /** 点击树节点触发 */
+  /** 点击复选框触发 */
   onCheck?: (
     checkedKeys: React.Key[],
     e: {
@@ -76,7 +76,7 @@ export const Tree: React.FC<TreeProps> = (props) => {
   const [treeDataStare, setTreeDataStare] = useState(treeData);
   const treeDataMap: Record<string, any> = useRef({});
 
-  const [checkedKeys, setCheckedKeys] = useState<string[]>(["0-0"]);
+  const [checkedKeys, setCheckedKeys] = useState<string[]>([]);
 
   const subTreeTringleClick = (e: React.MouseEvent) => {
     const clickKey = e.currentTarget.getAttribute("data-key") as string;
@@ -105,25 +105,28 @@ export const Tree: React.FC<TreeProps> = (props) => {
           "orange-tree-list-subtree-angle-close": !item.isOpen,
         });
 
-        const checkboxChange = (e: ChangeEvent<HTMLInputElement>) => {
-          console.log(item.key, e.target.checked);
-          if (e.target.checked) {
+        const checkboxChange = (checked: boolean) => {
+          console.log(item.key, checked);
+          let newCKs: string[] = [];
+          if (checked) {
             //添加所有儿子孙子
-            const newCKs = [item.key, ...checkedKeys];
+            // newCKs = [item.key, ...checkedKeys];
+            //只添加所有的孙子
+            newCKs = [...checkedKeys];
             const queue = [item.children];
             while (queue.length > 0) {
               const child = queue.shift();
               child?.forEach((c) => {
                 if (c.children) queue.push(c.children);
-                if (!newCKs.includes(c.key)) {
+                //加上了else 代表只添加所有孙子节点，不添加subtree节点
+                else if (!newCKs.includes(c.key)) {
                   newCKs.push(c.key);
                 }
               });
             }
-            setCheckedKeys(newCKs);
           } else {
             //移除所有儿子孙子
-            const newCKs = checkedKeys.filter((fit) => fit !== item.key);
+            newCKs = checkedKeys.filter((fit) => fit !== item.key);
             const queue = [item.children];
             while (queue.length > 0) {
               const child = queue.shift();
@@ -134,8 +137,9 @@ export const Tree: React.FC<TreeProps> = (props) => {
                 }
               });
             }
-            setCheckedKeys(newCKs);
           }
+          console.log(newCKs);
+          setCheckedKeys(newCKs);
         };
 
         let subtreeChecked = false;
@@ -147,14 +151,14 @@ export const Tree: React.FC<TreeProps> = (props) => {
           const child = queue.shift();
           child?.forEach((c) => {
             if (c.children) queue.push(c.children);
-            subtreeItemCount += 1;
+            else subtreeItemCount += 1;
             if (checkedKeys.includes(c.key)) {
               subtreeCheckedCount += 1;
             }
           });
         }
-
-        if (subtreeCheckedCount === subtreeItemCount) {
+        console.log(subtreeCheckedCount, subtreeItemCount);
+        if (subtreeCheckedCount >= subtreeItemCount) {
           subtreeChecked = true;
         } else if (subtreeCheckedCount > 0) {
           subtreeIndeterminate = true;
@@ -182,7 +186,7 @@ export const Tree: React.FC<TreeProps> = (props) => {
                 >
                   <Checkbox
                     disabled={!!item.disableCheckbox || !!item.disabled}
-                    onchange={checkboxChange}
+                    onChange={checkboxChange}
                     checked={subtreeChecked}
                     indeterminate={subtreeIndeterminate}
                   />
@@ -211,13 +215,16 @@ export const Tree: React.FC<TreeProps> = (props) => {
           }
         );
 
-        const checkboxChange = (e: ChangeEvent<HTMLInputElement>) => {
-          console.log(item.key, e.target.checked);
+        const checkboxChange = (checked: boolean) => {
+          console.log(item.key, checked);
+          let newCks: string[] = [];
           if (!checkedKeys.includes(item.key)) {
-            setCheckedKeys([item.key, ...checkedKeys]);
+            newCks = [item.key, ...checkedKeys];
           } else {
-            setCheckedKeys(checkedKeys.filter((it) => it !== item.key));
+            newCks = checkedKeys.filter((it) => it !== item.key);
           }
+          console.log(newCks);
+          setCheckedKeys(newCks);
         };
 
         return (
@@ -234,7 +241,7 @@ export const Tree: React.FC<TreeProps> = (props) => {
               <span className="orange-tree-list-checkbox">
                 <Checkbox
                   disabled={!!item.disableCheckbox || !!item.disabled}
-                  onchange={checkboxChange}
+                  onChange={checkboxChange}
                   checked={checkedKeys.includes(item.key)}
                 />
               </span>

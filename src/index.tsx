@@ -21,6 +21,8 @@ import { Row, Col } from "./components/Grid";
 import Divider from "./components/Divider";
 import Checkbox from "./components/Checkbox";
 
+import WEBHeader from "./others/WEBHeader";
+
 library.add(fas);
 
 export {
@@ -49,4 +51,5 @@ export {
   Col,
   Divider,
   Checkbox,
+  WEBHeader,
 };

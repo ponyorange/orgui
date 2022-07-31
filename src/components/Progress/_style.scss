@@ -30,3 +30,65 @@
     }
   }
 }
+
+.orange-progress-circle{
+  position: relative;
+  .circle-bar-left {
+    background-color: $progress-bg;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+  }
+  .circle-bar-right {
+    background-color: $progress-bg;
+    width: 100%;
+    height: 100%;
+    z-index: 30;
+  }
+  .circle-bar-base {
+    width: 100%;
+    height: 100%;
+    z-index: 20;
+  }
+  .mask {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0);
+    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .percent {
+      font-size: 20px;
+      z-index: 1000;
+    }
+  }
+  /*所有的后代都水平垂直居中，这样就是同心圆了*/
+  & .circle-bar-left,.circle-bar-right,mask,.circle-bar-base {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+  }
+  /*自身以及子元素都是圆*/
+  &,
+  & > * {
+    border-radius: 50%;
+  }
+}
+
+.orange-progress-ring{
+  circle {
+    fill: none;
+    /* 灰色进度槽 */
+    stroke: $progress-bg;
+  }
+  /* 渐变进度条 */
+  .circle-bar {
+    /* stroke-dashoffset慢慢变小，进度条就会慢慢出现 */
+    stroke: url(#gradient);
+  }
+  font-size: 20px;
+}

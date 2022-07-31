@@ -14,7 +14,7 @@ interface CheckbocProps {
   /* 是否禁用 */
   disabled?: boolean;
   /* value改变时回调函数 */
-  onchange?: (e: ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (checked: boolean) => void;
 }
 /**
  * 多选框
@@ -30,12 +30,11 @@ export const Checkbox: React.FC<CheckbocProps> = (props) => {
   const {
     children,
     checked,
-    onchange,
+    onChange,
     autoFocus,
     defaultChecked,
     indeterminate,
     disabled,
-    ...restProps
   } = props;
   const [check, setCheck] = useState(!!defaultChecked);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -49,12 +48,10 @@ export const Checkbox: React.FC<CheckbocProps> = (props) => {
   });
 
   const inputValueChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setCheck(!check);
-    if (Object.keys(restProps).includes("onChange")) {
-      Object(restProps).onChange(e);
-    }
-    if (onchange) {
-      onchange(e);
+    const newChecked = !check;
+    setCheck(newChecked);
+    if (onChange) {
+      onChange(newChecked);
     }
   };
 

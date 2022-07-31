@@ -114,7 +114,7 @@ const SizeTemplate: ComponentStory<typeof Form> = (args) => {
           <FormItem
             name="agreement"
             rules={[{ type: "enum", enum: [true], message: "请同意协议" }]}
-            getValueFromEvent={(e) => e.target.checked}
+            getValueFromEvent={(e) => e}
             valuePropName="checked"
           >
             <Checkbox>
@@ -228,7 +228,7 @@ const TypeTemplate: ComponentStory<typeof Form> = (args) => {
           <FormItem
             name="agreement"
             valuePropName="checked"
-            getValueFromEvent={(e) => e.target.checked}
+            getValueFromEvent={(e) => e}
             rules={[{ type: "enum", enum: [true], message: "请同意协议" }]}
           >
             <Checkbox>
