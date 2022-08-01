@@ -43,7 +43,7 @@ export const Checkbox: React.FC<CheckbocProps> = (props) => {
     "orange-checkbox-wrapper-disabled": disabled,
   });
   const checkboxClasses = classNames("orange-checkbox", {
-    "orange-checkbox-indeterminate": indeterminate,
+    "orange-checkbox-indeterminate": indeterminate && !check,
     "orange-checkbox-checked": check,
   });
 
@@ -62,12 +62,12 @@ export const Checkbox: React.FC<CheckbocProps> = (props) => {
   }, [autoFocus]);
 
   useEffect(() => {
-    setCheck(!!checked);
-  }, [checked]);
-
-  useEffect(() => {
     setCheck(!!defaultChecked);
   }, []);
+
+  useEffect(() => {
+    setCheck(!!checked);
+  }, [checked]);
 
   return (
     <label className={checkbocWarpperClasses}>

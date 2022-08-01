@@ -65,9 +65,9 @@ const IntroTemplate: ComponentStory<typeof Tree> = () => {
 
   return (
     <Tree
-      defaultExpandedKeys={["0-0-0", "0-0-1"]}
+      defaultExpandedKeys={["0-0", "0-0-0", "0-0-1"]}
       defaultSelectedKeys={["0-0-0", "0-0-1"]}
-      defaultCheckedKeys={["0-0-0", "0-0-1"]}
+      defaultCheckedKeys={["0-0-0", "0-0-1", "0-0-1-0"]}
       onSelect={onSelect}
       onCheck={onCheck}
       treeData={treeData}
@@ -124,15 +124,20 @@ const SizeTemplate: ComponentStory<typeof Tree> = (args) => {
     },
   ];
 
-  const [expandedKeys, setExpandedKeys] = useState<React.Key[]>([
+  const [expandedKeys, setExpandedKeys] = useState<string[]>([
+    "0-0",
+    "0-1",
     "0-0-0",
     "0-0-1",
   ]);
-  const [checkedKeys, setCheckedKeys] = useState<React.Key[]>(["0-0-0"]);
-  const [selectedKeys, setSelectedKeys] = useState<React.Key[]>([]);
+  const [checkedKeys, setCheckedKeys] = useState<string[]>([
+    "0-0-0-1",
+    "0-0-1-1",
+  ]);
+  const [selectedKeys, setSelectedKeys] = useState<string[]>([]);
   const [autoExpandParent, setAutoExpandParent] = useState<boolean>(true);
 
-  const onExpand = (expandedKeysValue: React.Key[]) => {
+  const onExpand = (expandedKeysValue: string[]) => {
     console.log("onExpand", expandedKeysValue);
     // if not set autoExpandParent to false, if children expanded, parent can not collapse.
     // or, you can remove all expanded children keys.
@@ -140,12 +145,12 @@ const SizeTemplate: ComponentStory<typeof Tree> = (args) => {
     setAutoExpandParent(false);
   };
 
-  const onCheck = (checkedKeysValue: React.Key[]) => {
+  const onCheck = (checkedKeysValue: string[]) => {
     console.log("onCheck", checkedKeysValue);
     setCheckedKeys(checkedKeysValue);
   };
 
-  const onSelect = (selectedKeysValue: React.Key[], info: any) => {
+  const onSelect = (selectedKeysValue: string[], info: any) => {
     console.log("onSelect", info);
     setSelectedKeys(selectedKeysValue);
   };
@@ -168,7 +173,59 @@ const SizeTemplate: ComponentStory<typeof Tree> = (args) => {
 export const Size = SizeTemplate.bind({});
 Size.storyName = "受控操作示例";
 
-const TypeTemplate: ComponentStory<typeof Tree> = (args) => <div>待实现</div>;
+const TypeTemplate: ComponentStory<typeof Tree> = (args) => {
+  const initTreeData: DataNode[] = [
+    {
+      title: "Expand to load",
+      key: "0",
+    },
+    { title: "Expand to load", key: "1" },
+    { title: "Tree Node", key: "2", isLeaf: true },
+  ];
+
+  // It's just a simple demo. You can use tree map to optimize update perf.
+  const updateTreeData = (
+    list: DataNode[],
+    key: string,
+    children: DataNode[]
+  ): DataNode[] =>
+    list.map((node) => {
+      if (node.key === key) {
+        return {
+          ...node,
+          children,
+        };
+      }
+      if (node.children) {
+        return {
+          ...node,
+          children: updateTreeData(node.children, key, children),
+        };
+      }
+      return node;
+    });
+
+  const [treeData, setTreeData] = useState(initTreeData);
+
+  const onLoadData = ({ key, children }: any) =>
+    new Promise<void>((resolve) => {
+      if (children) {
+        resolve();
+        return;
+      }
+      setTimeout(() => {
+        setTreeData((origin) => {
+          return updateTreeData(origin, key, [
+            { title: "Child Node", key: `${key}-0` },
+            { title: "Child Node", key: `${key}-1` },
+          ]);
+        });
+        resolve();
+      }, 1000);
+    });
+
+  return <Tree loadData={onLoadData} treeData={treeData} />;
+};
 
 export const Type = TypeTemplate.bind({});
 Type.storyName = "异步数据加载";

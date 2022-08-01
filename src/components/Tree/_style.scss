@@ -19,6 +19,9 @@
           display: inline-block;
           transition: transform .2s;
         }
+        .orange-tree-list-subtree-loading{
+          margin-right: -2px;
+        }
         .orange-tree-list-subtree-angle-close{
           transform: rotate(180deg);
         }
