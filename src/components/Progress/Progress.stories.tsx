@@ -21,24 +21,28 @@ const circleprogressDivStyle = {
   marginTop: "20px",
 };
 const IntroTemplate: ComponentStory<typeof Progress> = () => {
-  const [persent, setPersent] = useState(10);
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setPersent((pre) => {
-        if (pre > 99) {
-          return 0;
-        } else {
-          return pre + 1;
-        }
-      });
-    }, 200);
-    return () => {
-      clearInterval(timer);
-    };
-  }, []);
+  const [persent, setPersent] = useState(90);
+  // useEffect(() => {
+  //   const timer = setInterval(() => {
+  //     setPersent((pre) => {
+  //       if (pre > 99) {
+  //         return 0;
+  //       } else {
+  //         return pre + 1;
+  //       }
+  //     });
+  //   }, 200);
+  //   return () => {
+  //     clearInterval(timer);
+  //   };
+  // }, []);
   return (
     <div style={progressDivStyle}>
-      <Progress percent={persent} color={["#FFD700", "#FFA500"]} />
+      <Progress
+        percent={persent}
+        color={["#FFD700", "#FFA500"]}
+        active={true}
+      />
     </div>
   );
 };
@@ -47,21 +51,21 @@ export const Introduction = IntroTemplate.bind({});
 Introduction.storyName = "默认的Progress";
 
 const SizeTemplate: ComponentStory<typeof Progress> = (args) => {
-  const [persent, setPersent] = useState(10);
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setPersent((pre) => {
-        if (pre > 99) {
-          return 0;
-        } else {
-          return pre + 1;
-        }
-      });
-    }, 200);
-    return () => {
-      clearInterval(timer);
-    };
-  }, []);
+  const [persent, setPersent] = useState(90);
+  // useEffect(() => {
+  //   const timer = setInterval(() => {
+  //     setPersent((pre) => {
+  //       if (pre > 99) {
+  //         return 0;
+  //       } else {
+  //         return pre + 1;
+  //       }
+  //     });
+  //   }, 200);
+  //   return () => {
+  //     clearInterval(timer);
+  //   };
+  // }, []);
   return (
     <div style={circleprogressDivStyle}>
       <Progress
@@ -77,21 +81,21 @@ export const Size = SizeTemplate.bind({});
 Size.storyName = "圆形Progress";
 
 const TypeTemplate: ComponentStory<typeof Progress> = (args) => {
-  const [persent, setPersent] = useState(10);
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setPersent((pre) => {
-        if (pre > 99) {
-          return 0;
-        } else {
-          return pre + 1;
-        }
-      });
-    }, 200);
-    return () => {
-      clearInterval(timer);
-    };
-  }, []);
+  const [persent, setPersent] = useState(90);
+  // useEffect(() => {
+  //   const timer = setInterval(() => {
+  //     setPersent((pre) => {
+  //       if (pre > 99) {
+  //         return 0;
+  //       } else {
+  //         return pre + 1;
+  //       }
+  //     });
+  //   }, 200);
+  //   return () => {
+  //     clearInterval(timer);
+  //   };
+  // }, []);
   return (
     <div style={circleprogressDivStyle}>
       <Progress percent={persent} color={["#a8ff78", "#78ffd6"]} type="ring" />

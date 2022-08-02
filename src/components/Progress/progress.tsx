@@ -1,5 +1,6 @@
 import React, { FC } from "react";
 import { ThemeProps } from "../Icon/icon";
+import classNames from "classnames";
 
 type progressType = "line" | "circle" | "ring";
 
@@ -18,6 +19,8 @@ export interface ProgressProps {
   showTextColor?: string;
   /** 进度条颜色，支持单色、多色渐变 */
   color?: string[];
+  /** 是否开启闪条动画（仅限line） */
+  active?: boolean;
   styles?: React.CSSProperties;
   theme?: ThemeProps;
 }
@@ -45,6 +48,7 @@ export const Progress: FC<ProgressProps> = (props) => {
     showTextColor,
     type,
     circleSize,
+    active,
   } = props;
   let showTextColorStyle = {};
   if (showTextColor) {
@@ -199,16 +203,19 @@ export const Progress: FC<ProgressProps> = (props) => {
       </div>
     );
   } else {
+    const innerBarClasses = classNames(
+      `orange-progress-bar-inner color-${theme}`,
+      {
+        "orange-progress-bar-inner-active": active,
+      }
+    );
     return (
       <div className="orange-progress-bar" style={styles}>
         <div
           className="orange-progress-bar-outer"
           style={{ height: `${strokeHeight}px` }}
         >
-          <div
-            className={`orange-progress-bar-inner color-${theme}`}
-            style={progressColorStyle}
-          >
+          <div className={innerBarClasses} style={progressColorStyle}>
             {showText && (
               <span
                 className="inner-text"

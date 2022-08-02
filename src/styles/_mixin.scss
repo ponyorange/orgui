@@ -26,7 +26,7 @@
     background: $hover-background;
     border-color: $hover-border;
     outline: none;
-    animation: btnClick .2s;
+    animation: btnClick 1.2s cubic-bezier(.23,1,.32,1);
   }
   &:disabled,
   &.disabled {

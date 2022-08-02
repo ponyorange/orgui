@@ -191,7 +191,8 @@ $box-shadow-inset:            inset 0 1px 2px rgba($black, .075) !default;
 //禁用
 $disabled-color:              $gray-600 !default;
 $disabled-backgroundColor:    $gray-100 !default;
-
+//Alert
+$alert-box-shadow:             0 .3rem .6rem rgba($black, .15) !default;
 // 按钮
 // 按钮基本属性
 $btn-font-weight:             400;
@@ -305,7 +306,7 @@ $input-group-addon-border-color:        $input-border-color !default;
 
 $progress-font-size:                $font-size-base * .75 !default;
 $progress-bg:                       $gray-200 !default;
-$progress-border-radius:            $border-radius !default;
+$progress-border-radius:            7px !default;
 $progress-bar-color:                $white !default;
 $progress-bar-transition:           width .6s ease !default;
 

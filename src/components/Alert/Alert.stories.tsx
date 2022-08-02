@@ -19,7 +19,11 @@ const IntroTemplate: ComponentStory<typeof Alert> = () => {
   return (
     <>
       {alertShow && <Alert title="我是一个提示" onClose={alertCloseClick} />}
-      <Button className="myBtn" onClick={() => setAlertShow(true)}>
+      <Button
+        className="myBtn"
+        onClick={() => setAlertShow(true)}
+        style={{ marginTop: "20px" }}
+      >
         显示 Alert
       </Button>
     </>

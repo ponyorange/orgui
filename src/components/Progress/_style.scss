@@ -24,6 +24,18 @@
       margin: 0 5px;
     }
   }
+ .orange-progress-bar-inner-active{
+   &::before{
+     position: absolute;
+     inset: 0;
+     background: #fff;
+     border-radius: $progress-border-radius;
+     opacity: 0;
+     -webkit-animation: orange-progress-active 2.4s cubic-bezier(.23,1,.32,1) infinite;
+     animation: orange-progress-active 2.4s cubic-bezier(.23,1,.32,1) infinite;
+     content: "";
+   }
+ }
   @each $key, $val in $theme-colors {
     .color-#{$key} {
       background-color: $val;

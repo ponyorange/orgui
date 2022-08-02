@@ -167,6 +167,58 @@ export const Tree: React.FC<TreeProps> = (props) => {
     alert(clickTitle);
   };
 
+  /** 深度处理父节点 */
+  const deepDealWithCheck = (newCks: string[], treeData: DataNode) => {
+    if (treeData.disabled || treeData.disableCheckbox) return;
+    //判断处理父节点的半选中状态
+    // let subtreeIndeterminate = false;
+    let subtreeCheckedCount = 0;
+    let checkItemCount = 0;
+    const queue = [treeData.children];
+    while (queue.length > 0) {
+      const child = queue.shift();
+      child?.forEach((c) => {
+        if (c.children) queue.push(c.children);
+        if (!c.disableCheckbox && !c.disabled) {
+          checkItemCount += 1;
+          if (newCks.includes(c.key)) {
+            subtreeCheckedCount += 1;
+          }
+        }
+      });
+    }
+    // if (subtreeCheckedCount > 0) {
+    //   //说明有孩子被选中，要半选中
+    //   subtreeIndeterminate = true;
+    // }
+    if (subtreeCheckedCount >= checkItemCount) {
+      //说明全部孩子被选中，添加自己到checkstate
+      if (!newCks.includes(treeData.key)) {
+        newCks.push(treeData.key);
+      }
+    } else {
+      if (newCks.includes(treeData.key)) {
+        newCks.splice(newCks.indexOf(treeData.key), 1);
+      }
+    }
+  };
+  const dealWithParentCkeck = (newCks: string[], key: string) => {
+    let cur = treeDataMap.current[key];
+    while (cur.parent) {
+      deepDealWithCheck(newCks, cur.parent);
+      cur = treeDataMap.current[cur.parent.key];
+    }
+    if (checkedKeys) {
+      //受控
+      if (onCheck) {
+        onCheck(newCks);
+      }
+    } else {
+      //非受控
+      setCheckedKeysState(newCks);
+    }
+  };
+
   /** 渲染树 */
   const renderTree = (td: DataNode[], parent?: DataNode): React.ReactNode => {
     return td.map((item, index) => {
@@ -195,7 +247,11 @@ export const Tree: React.FC<TreeProps> = (props) => {
               child?.forEach((c) => {
                 if (c.children) queue.push(c.children);
                 //加上了else 代表只添加所有孙子节点，不添加subtree节点
-                if (!newCKs.includes(c.key)) {
+                if (
+                  !newCKs.includes(c.key) &&
+                  !c.disableCheckbox &&
+                  !c.disabled
+                ) {
                   newCKs.push(c.key);
                 }
               });
@@ -208,13 +264,18 @@ export const Tree: React.FC<TreeProps> = (props) => {
               const child = queue.shift();
               child?.forEach((c) => {
                 if (c.children) queue.push(c.children);
-                if (newCKs.includes(c.key)) {
+                if (
+                  newCKs.includes(c.key) &&
+                  !c.disableCheckbox &&
+                  !c.disabled
+                ) {
                   newCKs.splice(newCKs.indexOf(c.key), 1);
                 }
               });
             }
           }
-          setCheckedKeysState(newCKs);
+          //处理父节点
+          dealWithParentCkeck(newCKs, item.key);
         };
         //判断处理父节点的半选中状态
         let subtreeIndeterminate = false;
@@ -223,13 +284,19 @@ export const Tree: React.FC<TreeProps> = (props) => {
         while (queue.length > 0) {
           const child = queue.shift();
           child?.forEach((c) => {
+            // checkItemCount += 1;
             if (c.children) queue.push(c.children);
-            if (checkedKeysState.includes(c.key)) {
+            if (
+              checkedKeysState.includes(c.key) &&
+              !c.disabled &&
+              !c.disableCheckbox
+            ) {
               subtreeCheckedCount += 1;
             }
           });
         }
         if (subtreeCheckedCount > 0) {
+          //说明有孩子被选中，要半选中
           subtreeIndeterminate = true;
         }
 
@@ -300,56 +367,15 @@ export const Tree: React.FC<TreeProps> = (props) => {
             "orange-tree-treeNode-disabled": !!item.disabled,
           }
         );
-
         const checkboxChange = (checked: boolean) => {
           let newCks: string[] = [];
           if (!checkedKeysState.includes(item.key)) {
             newCks = [item.key, ...checkedKeysState];
-            //判断是否添加父节点
-            if (treeDataMap.current[item.key].parent) {
-              const parent = treeDataMap.current[item.key].parent;
-              let ckc = 0;
-              for (let i = 0; i < parent.children.length; i++) {
-                if (newCks.includes(parent.children[i].key)) ckc += 1;
-              }
-              if (
-                ckc === parent.children.length &&
-                !parent.disabled &&
-                !parent.disableCheckbox
-              ) {
-                //儿子全被选中了，添加父亲key
-                newCks.push(parent.key);
-              }
-            }
           } else {
             newCks = checkedKeysState.filter((it) => it !== item.key);
-            //判断是否移除父节点
-            if (
-              treeDataMap.current[item.key].parent &&
-              newCks.includes(treeDataMap.current[item.key].parent.key)
-            ) {
-              newCks = newCks.filter((it) => {
-                if (
-                  treeDataMap.current[it].item.disabled ||
-                  treeDataMap.current[it].item.disableCheckbox
-                ) {
-                  //禁用的不受影响
-                  return true;
-                } else {
-                  return it !== treeDataMap.current[item.key].parent.key;
-                }
-              });
-            }
           }
-          if (checkedKeys) {
-            //受控
-            if (onCheck) {
-              onCheck(newCks);
-            }
-          } else {
-            //非受控
-            setCheckedKeysState(newCks);
-          }
+
+          dealWithParentCkeck(newCks, item.key);
         };
         return (
           <div key={item.key} className={itemClasses}>

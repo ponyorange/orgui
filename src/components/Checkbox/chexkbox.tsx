@@ -3,17 +3,17 @@ import classNames from "classnames";
 
 interface CheckbocProps {
   children?: React.ReactNode;
-  /* 指定初始是否选中 */
+  /** 指定初始是否选中 */
   defaultChecked?: boolean;
-  /* 指定当前是否选中 */
+  /** （受控）指定当前是否选中 */
   checked?: boolean;
-  /* 自动获取焦点 */
+  /** 自动获取焦点 */
   autoFocus?: boolean;
-  /* 是否为半选中 */
+  /** 是否为半选中 */
   indeterminate?: boolean;
-  /* 是否禁用 */
+  /** 是否禁用 */
   disabled?: boolean;
-  /* value改变时回调函数 */
+  /** value改变时回调函数 */
   onChange?: (checked: boolean) => void;
 }
 /**
@@ -49,7 +49,10 @@ export const Checkbox: React.FC<CheckbocProps> = (props) => {
 
   const inputValueChange = (e: ChangeEvent<HTMLInputElement>) => {
     const newChecked = !check;
-    setCheck(newChecked);
+    //受控处理
+    if (checked === undefined) {
+      setCheck(newChecked);
+    }
     if (onChange) {
       onChange(newChecked);
     }
@@ -86,7 +89,6 @@ export const Checkbox: React.FC<CheckbocProps> = (props) => {
 };
 
 Checkbox.defaultProps = {
-  checked: false,
   autoFocus: false,
   defaultChecked: false,
 };

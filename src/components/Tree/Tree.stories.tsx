@@ -67,7 +67,7 @@ const IntroTemplate: ComponentStory<typeof Tree> = () => {
     <Tree
       defaultExpandedKeys={["0-0", "0-0-0", "0-0-1"]}
       defaultSelectedKeys={["0-0-0", "0-0-1"]}
-      defaultCheckedKeys={["0-0-0", "0-0-1", "0-0-1-0"]}
+      defaultCheckedKeys={["0-0-0"]}
       onSelect={onSelect}
       onCheck={onCheck}
       treeData={treeData}
