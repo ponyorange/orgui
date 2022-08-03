@@ -106,7 +106,7 @@ export const Tree: React.FC<TreeProps> = (props) => {
   );
   useEffect(() => {
     if (selectedKeys) {
-      setCheckedKeysState(selectedKeys);
+      setSelectedKeysState(selectedKeys);
     }
   }, [selectedKeys]);
 
