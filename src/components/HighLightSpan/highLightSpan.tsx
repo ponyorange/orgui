@@ -94,7 +94,6 @@ export const HighLightSpan: React.FC<HighLightSpanProps> = (props) => {
     if (highLighs.length === 0) {
       return rawtext;
     }
-    // console.log("highLighs===", highLighs);
     const highLigh = highLighs.shift() as string;
 
     //分割

@@ -87,6 +87,9 @@ export const Tree: React.FC<TreeProps> = (props) => {
     onExpand,
     checkedKeys,
     onCheck,
+    defaultSelectedKeys,
+    selectedKeys,
+    onSelect,
   } = props;
   //树数据
   const [treeDataState, setTreeDataState] = useState(treeData);
@@ -96,6 +99,16 @@ export const Tree: React.FC<TreeProps> = (props) => {
   }, [treeData]);
   //建立映射关系以便快速找到对应节点
   const treeDataMap: Record<string, any> = useRef({});
+
+  //select数据
+  const [selectedKeysState, setSelectedKeysState] = useState<string[]>(
+    defaultSelectedKeys ? defaultSelectedKeys : []
+  );
+  useEffect(() => {
+    if (selectedKeys) {
+      setCheckedKeysState(selectedKeys);
+    }
+  }, [selectedKeys]);
 
   //check数据
   const [checkedKeysState, setCheckedKeysState] = useState<string[]>(
@@ -120,16 +133,14 @@ export const Tree: React.FC<TreeProps> = (props) => {
   /** 三角形按钮点击 */
   const subTreeTringleClick = (e: React.MouseEvent) => {
     const clickKey = e.currentTarget.getAttribute("data-key") as string;
-    if (expandedKeys) {
-      //受控
-      if (onExpand) {
-        if (expandedKeysState.includes(clickKey)) {
-          onExpand(expandedKeysState.filter((item) => item !== clickKey));
-        } else {
-          onExpand([clickKey, ...expandedKeysState]);
-        }
+    if (onExpand) {
+      if (expandedKeysState.includes(clickKey)) {
+        onExpand(expandedKeysState.filter((item) => item !== clickKey));
+      } else {
+        onExpand([clickKey, ...expandedKeysState]);
       }
-    } else {
+    }
+    if (!expandedKeys) {
       //非受控
       if (expandedKeysState.includes(clickKey)) {
         setExpandedKeysState(
@@ -160,11 +171,27 @@ export const Tree: React.FC<TreeProps> = (props) => {
       });
     }
   };
+
   /** 节点标题点击 */
   const treeTitleClick = (e: React.MouseEvent) => {
-    // const clickKey = e.currentTarget.getAttribute("data-key");
-    const clickTitle = e.currentTarget.getAttribute("data-title");
-    alert(clickTitle);
+    const clickKey: string = e.currentTarget.getAttribute("data-key") || "";
+    let selected = true;
+    let newSKs = [...selectedKeysState];
+    if (newSKs.includes(clickKey)) {
+      selected = false;
+      newSKs = newSKs.filter((key) => key !== clickKey);
+    } else {
+      newSKs.push(clickKey);
+    }
+
+    if (onSelect) {
+      onSelect(newSKs, {
+        selected,
+        selectedNodes: treeDataMap.current[clickKey].item,
+        event: e,
+        node: treeDataMap.current[clickKey].item.title,
+      });
+    }
   };
 
   /** 深度处理父节点 */
@@ -208,12 +235,10 @@ export const Tree: React.FC<TreeProps> = (props) => {
       deepDealWithCheck(newCks, cur.parent);
       cur = treeDataMap.current[cur.parent.key];
     }
-    if (checkedKeys) {
-      //受控
-      if (onCheck) {
-        onCheck(newCks);
-      }
-    } else {
+    if (onCheck) {
+      onCheck(newCks);
+    }
+    if (!checkedKeys) {
       //非受控
       setCheckedKeysState(newCks);
     }

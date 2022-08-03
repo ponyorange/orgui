@@ -41,7 +41,6 @@ export const Form: React.FC<FormProps> = (props) => {
   const [isCheckBalueState, setIsCheckBalueState] = useState(0);
 
   useEffect(() => {
-    console.log("改变了");
     resultData.current = {};
     return () => {};
   }, [initialValues]);
@@ -92,7 +91,6 @@ export const Form: React.FC<FormProps> = (props) => {
           if (initialValues) {
             defaultVal = initialValues[childEle.props.name];
           }
-          // console.log("defaultVal===", defaultVal);
           //初始化数据
           initDataAndDescriptor(childEle.props.name, childEle.props.rules);
 

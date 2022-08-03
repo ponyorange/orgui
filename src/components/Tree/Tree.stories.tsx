@@ -57,6 +57,7 @@ const IntroTemplate: ComponentStory<typeof Tree> = () => {
   ];
   const onSelect: TreeProps["onSelect"] = (selectedKeys, info) => {
     console.log("selected", selectedKeys, info);
+    alert("selected：" + info?.node);
   };
 
   const onCheck: TreeProps["onCheck"] = (checkedKeys, info) => {
@@ -152,6 +153,7 @@ const SizeTemplate: ComponentStory<typeof Tree> = (args) => {
 
   const onSelect = (selectedKeysValue: string[], info: any) => {
     console.log("onSelect", info);
+    alert("selected：" + info?.node);
     setSelectedKeys(selectedKeysValue);
   };
 
@@ -207,6 +209,11 @@ const TypeTemplate: ComponentStory<typeof Tree> = (args) => {
 
   const [treeData, setTreeData] = useState(initTreeData);
 
+  const onSelect = (selectedKeysValue: string[], info: any) => {
+    console.log("onSelect", info);
+    alert("selected：" + info?.node);
+  };
+
   const onLoadData = ({ key, children }: any) =>
     new Promise<void>((resolve) => {
       if (children) {
@@ -224,7 +231,7 @@ const TypeTemplate: ComponentStory<typeof Tree> = (args) => {
       }, 1000);
     });
 
-  return <Tree loadData={onLoadData} treeData={treeData} />;
+  return <Tree loadData={onLoadData} treeData={treeData} onSelect={onSelect} />;
 };
 
 export const Type = TypeTemplate.bind({});
