@@ -1,7 +1,6 @@
 import React from "react";
 
 import Button from "../../components/Button";
-import "./header.css";
 
 type User = {
   name: string;
@@ -43,27 +42,40 @@ export const WEBHeader = ({
   title,
 }: HeaderProps) => (
   <header>
-    <div className="wrapper">
+    <div className="orgui-webheader-wrapper">
       <div>
         {icon}
-        <h1>{title}</h1>
+        <h1 className="orgui-webheader-welcome-title">{title}</h1>
       </div>
       <div>
         {user ? (
           <>
-            <span className="welcome">
+            <span className="orgui-webheader-welcome">
               欢迎👏👏👏, <b>{user.name}</b>!
             </span>
-            <Button size="small" onClick={onLogout}>
+            <Button
+              size="small"
+              onClick={onLogout}
+              className="orgui-webheader-welcome-btn"
+            >
               退出
             </Button>
           </>
         ) : (
           <>
-            <Button size="small" onClick={onLogin}>
+            <Button
+              size="small"
+              onClick={onLogin}
+              className="orgui-webheader-welcome-btn"
+            >
               登录
             </Button>
-            <Button btnType="primary" size="small" onClick={onCreateAccount}>
+            <Button
+              btnType="primary"
+              size="small"
+              onClick={onCreateAccount}
+              className="orgui-webheader-welcome-btn"
+            >
               注册
             </Button>
           </>
@@ -77,7 +89,7 @@ export default WEBHeader;
 WEBHeader.defaultProps = {
   icon: (
     <svg
-      className="icon"
+      className="orgui-webheader-welcome-svg"
       viewBox="0 0 1024 1024"
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"

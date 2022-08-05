@@ -36,8 +36,9 @@
     "react-dom": ">=16.9.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "npm run clean && npm run build-ts && npm run build-css",
+    "start": "npm run storybook",
+    "build": "npm run pre-build && npm run cssvar",
+    "pre-build": "npm run clean && npm run build-ts && npm run build-css",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 6006 -s public",
@@ -45,7 +46,8 @@
     "clean": "rimraf ./dist",
     "build-ts": "tsc -p tsconfig.build.json",
     "build-css": "node-sass ./src/styles/index.scss ./dist/index.css",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "cssvar": "cssvar ./dist/index.css"
   },
   "eslintConfig": {
     "extends": [

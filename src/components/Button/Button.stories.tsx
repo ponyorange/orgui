@@ -11,16 +11,35 @@ export default {
 
 const IntroTemplate: ComponentStory<typeof Button> = () => (
   <div>
-    <Button>默认的</Button>
-    <Button btnType="primary">重要的</Button>
-    <Button btnType="danger">危险的</Button>
-    <Button size="large">大的</Button>
-    <Button size="small">小的</Button>
-    <Button disabled>禁止的</Button>
-    <Button btnType="link" href="https://www.baidu.com">
+    <Button style={{ marginLeft: "10px" }}>默认的</Button>
+    <Button style={{ marginLeft: "10px" }} btnType="primary">
+      重要的
+    </Button>
+    <Button style={{ marginLeft: "10px" }} btnType="danger">
+      危险的
+    </Button>
+    <Button style={{ marginLeft: "10px" }} size="large">
+      大的
+    </Button>
+    <Button style={{ marginLeft: "10px" }} size="small">
+      小的
+    </Button>
+    <Button style={{ marginLeft: "10px" }} disabled>
+      禁止的
+    </Button>
+    <Button
+      style={{ marginLeft: "10px" }}
+      btnType="link"
+      href="https://www.baidu.com"
+    >
       a标签
     </Button>
-    <Button btnType="link" href="https://www.baidu.com" disabled>
+    <Button
+      style={{ marginLeft: "10px" }}
+      btnType="link"
+      href="https://www.baidu.com"
+      disabled
+    >
       a标签禁止的
     </Button>
   </div>
@@ -31,9 +50,15 @@ Introduction.storyName = "介绍";
 
 const SizeTemplate: ComponentStory<typeof Button> = (args) => (
   <>
-    <Button size="small">small</Button>
-    <Button size="normal">normal</Button>
-    <Button size="large">large</Button>
+    <Button style={{ marginLeft: "10px" }} size="small">
+      small
+    </Button>
+    <Button style={{ marginLeft: "10px" }} size="normal">
+      normal
+    </Button>
+    <Button style={{ marginLeft: "10px" }} size="large">
+      large
+    </Button>
   </>
 );
 
@@ -42,12 +67,22 @@ Size.storyName = "不同大小的Button";
 
 const TypeTemplate: ComponentStory<typeof Button> = (args) => (
   <>
-    <Button btnType="default">default</Button>
-    <Button btnType="link" href="https://www.baidu.com">
+    <Button style={{ marginLeft: "10px" }} btnType="default">
+      default
+    </Button>
+    <Button
+      style={{ marginLeft: "10px" }}
+      btnType="link"
+      href="https://www.baidu.com"
+    >
       a标签
     </Button>
-    <Button btnType="primary">primary</Button>
-    <Button btnType="danger">danger</Button>
+    <Button style={{ marginLeft: "10px" }} btnType="primary">
+      primary
+    </Button>
+    <Button style={{ marginLeft: "10px" }} btnType="danger">
+      danger
+    </Button>
   </>
 );
 

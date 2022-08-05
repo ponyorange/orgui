@@ -366,6 +366,39 @@ import 'orgui/dist/index.css'
   </div>
 </div>
 
+### 修改主题色:
+直接修在 :root 覆盖 CSS 变量就可以了：
+```css
+/** 比如在index.css中：**/
+:root:root {
+  --org-color-primary:       #6f42c1;
+}
+/*
+主题色就变成了紫色。  注：（:root:root是为了提高优先级）
+*/
+```
+
+#### 完整主题色配置：
+```css
+:root:root {
+    --org-color-primary:       #f0ad4e; /* 主色 */
+    --org-color-secondary:     #6c757d; /* 次色 */
+    --org-color-success:       #5cb85c; /* 成功色 */
+    --org-color-info:          #5bc0de; /* 信息提示色 */
+    --org-color-warning:       #fadb14; /* 警告色 */
+    --org-color-danger:        #d9534f; /* 危险色 */
+    --org-color-light:         #f8f9fa; /* 常规主题色 */
+    --org-color-dark:          #343a40; /* 暗黑主题色 */
+    /* 主色的暗沉颜色 */
+    --org-color-primary-darken:#df8a13;
+    /* 此处配置的颜色用于组件的hover、focus、 shadow、border等，建议设置为主色（primary）的各种透明度以保证颜色统一性 */
+    --org-primary-opacity01:   rgba(240, 173, 78, 0.1);
+    --org-primary-opacity02:   rgba(240, 173, 78, 0.2);
+    --org-primary-opacity03:   rgba(240, 173, 78, 0.3);
+    --org-primary-opacity04:   rgba(240, 173, 78, 0.4);
+    --org-primary-opacity05:   rgba(240, 173, 78, 0.5);
+}
+```
 
 ## 目前实现的组件
 * Alert

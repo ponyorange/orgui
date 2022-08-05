@@ -34,14 +34,27 @@
 }
 
 .btn-primary {
-  @include button-style($primary, $primary, $white)
+  @include button-style($primary, $primary, $white);
 }
 .btn-danger {
-  @include button-style($danger, $danger, $white)
+  @include button-style($danger, $danger, $white);
 }
 
 .btn-default {
-  @include button-style($white, $gray-400, $body-color, $white, $primary, $primary)
+  @include button-style($white, $gray-400, $body-color);
+  &:hover {
+    opacity: .85;
+    color: $primary;
+    border-color: $primary;
+  }
+  &:focus,
+  &.focus {
+    opacity: .85;
+    color: $primary;
+    border-color: $primary;
+    outline: none;
+    animation: btnClick 1.2s cubic-bezier(.23,1,.32,1);
+  }
 }
 
 .btn-link {

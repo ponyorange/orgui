@@ -1,3 +1,4 @@
+/**orange-cli**/
 /** 中性色彩 **/
 $white:    #fff !default;
 $gray-100: #f8f9fa !default;
@@ -25,6 +26,7 @@ $cyan:    #5bc0de !default;
 
 /** 系统色板 **/
 $primary:       $orange !default;
+$primary-darken:#df8a13 !default;
 $secondary:     $gray-600 !default;
 $success:       $green !default;
 $info:          $cyan !default;
@@ -45,12 +47,13 @@ $theme-colors:
                 "light":      $light,
                 "dark":       $dark
         );
+
 /** 主题颜色透明度 **/
-$primary-opacity01:           rgba(240, 173, 78,.1) !default;
-$primary-opacity02:           rgba(240, 173, 78,.2) !default;
-$primary-opacity03:           rgba(240, 173, 78,.3) !default;
-$primary-opacity04:           rgba(240, 173, 78,.4) !default;
-$primary-opacity05:           rgba(240, 173, 78,.5) !default;
+$primary-opacity01:           rgba($primary,.1) !default;
+$primary-opacity02:           rgba($primary,.2) !default;
+$primary-opacity03:           rgba($primary,.3) !default;
+$primary-opacity04:           rgba($primary,.4) !default;
+$primary-opacity05:           rgba($primary,.5) !default;
 
 /** 字体家族 **/
 $font-family-sans-serif:      -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
@@ -88,7 +91,7 @@ $h6-font-size:                $font-size-base !default;
 // 链接
 $link-color:                              $primary !default;
 $link-decoration:                         none !default;
-$link-hover-color:                        darken($link-color, 15%) !default;
+$link-hover-color:                        $primary-darken !default;
 $link-hover-decoration:                   underline !default;
 
 // body
@@ -284,10 +287,10 @@ $input-border-radius-lg:                $border-radius-lg !default;
 $input-border-radius-sm:                $border-radius-sm !default;
 
 $input-focus-bg:                        $input-bg !default;
-$input-focus-border-color:              lighten($primary, 25%) !default;
+$input-focus-border-color:              $primary-opacity05 !default;
 $input-focus-width:                     .2rem !default;
 $input-focus-color:                     $input-color !default;
-$input-focus-shadow-color:              rgba($primary, .25) !default;
+$input-focus-shadow-color:              $primary-opacity03 !default;
 $input-focus-box-shadow:                0 0 0 $input-focus-width $input-focus-shadow-color !default;
 
 $input-placeholder-color:               $gray-600 !default;
