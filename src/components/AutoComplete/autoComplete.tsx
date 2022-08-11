@@ -154,6 +154,7 @@ export const AutoComplete: FC<AutoCompleteProps> = (props) => {
                 key={index}
                 className={cnames}
                 onClick={() => handleSelect(item)}
+                data-testid="item"
               >
                 {renderTemplate(item)}
               </li>

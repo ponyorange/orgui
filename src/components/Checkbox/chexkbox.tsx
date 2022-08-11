@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useEffect, useRef, useState } from "react";
 import classNames from "classnames";
 
-interface CheckbocProps {
+export interface CheckbocProps {
   children?: React.ReactNode;
   /** 指定初始是否选中 */
   defaultChecked?: boolean;
@@ -74,7 +74,7 @@ export const Checkbox: React.FC<CheckbocProps> = (props) => {
 
   return (
     <label className={checkbocWarpperClasses}>
-      <span className={checkboxClasses}>
+      <span className={checkboxClasses} data-testid="checkbox">
         <input
           type="checkbox"
           className="orange-checkbox-input"

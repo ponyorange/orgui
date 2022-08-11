@@ -5,7 +5,7 @@ import Icon from "../Icon/icon";
 type dotPositionType = "top" | "bottom" | "left" | "right";
 type effectType = "scrollx" | "fade" | "space";
 
-interface CarouselPros {
+export interface CarouselPros {
   /** 是否自动切换 */
   autoplay?: boolean;
   /** 自动轮播时间间隔 */
@@ -227,13 +227,17 @@ export const Carousel: React.FC<CarouselPros> = (props) => {
         {Array.isArray(childrenEles) ? (
           childrenEles.map((ele, index) => {
             return (
-              <div className={childrenElesClass[index]} key={index}>
+              <div
+                className={childrenElesClass[index]}
+                key={index}
+                data-testid="caritem"
+              >
                 {ele}
               </div>
             );
           })
         ) : (
-          <div className={childrenElesClass[0]} key={0}>
+          <div className={childrenElesClass[0]} key={0} data-testid="caritem">
             {childrenEles}
           </div>
         )}

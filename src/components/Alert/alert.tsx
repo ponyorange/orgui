@@ -4,7 +4,7 @@ import Icon from "../Icon/icon";
 
 type AlertType = "success" | "default" | "warning" | "danger";
 
-interface AlertProps {
+export interface AlertProps {
   /** 标题 */
   title: string;
   /** 描述 */
@@ -57,7 +57,11 @@ export const Alert: React.FC<AlertProps> = (props) => {
         {description && <div className="description">{description}</div>}
       </span>
       {closeable && (
-        <span className="alert-closeIcon" onClick={closeIconClick}>
+        <span
+          className="alert-closeIcon"
+          onClick={closeIconClick}
+          data-testid="close-icon"
+        >
           <Icon icon="xmark" size="1x" className="icon" />
         </span>
       )}

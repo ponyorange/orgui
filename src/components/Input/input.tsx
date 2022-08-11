@@ -66,7 +66,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   //暴露方法给父组件
   // useImperativeHandle(ref, () => ({}));
   return (
-    <div className={cnames} style={style}>
+    <div className={cnames} style={style} data-testid="input-wrapper">
       {prepend && <div className="orange-input-group-prepend">{prepend}</div>}
       {icon && (
         <div className="icon-wrapper">
